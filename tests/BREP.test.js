@@ -4,6 +4,7 @@ import { BREPFace } from '../src/BREP/BREPFace';
 import { BREPVertex } from '../src/BREP/BREPVertex';
 import { Point } from '../src/NURBS/Point';
 import { Surface } from '../src/NURBS/Surface';
+import { BREPNode } from '../src/BREP/BREPNode';
 
 describe('BREP', () => {
   test('should create a BREP Taurus', () => {
@@ -293,9 +294,9 @@ describe('BREP', () => {
       node.removeFace(face);
       node.removeVertex(vertex);
     }
-    const foundEdge = node.findEdgeById(edge.id);
-    const foundFace = node.findFaceById(face.id);
-    const foundVertex = node.findVertexById(vertex.id);
+    const foundEdge = node.findEdgeById(edge?.id);
+    const foundFace = node.findFaceById(face?.id);
+    const foundVertex = node.findVertexById(vertex?.id);
     expect(foundEdge).toBeUndefined();
     expect(foundFace).toBeUndefined();
     expect(foundVertex).toBeUndefined();
