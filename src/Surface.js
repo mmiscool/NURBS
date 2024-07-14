@@ -235,18 +235,44 @@ class Surface {
     const intersections = [];
     const tolerance = 1e-6;
 
-    for (let u1 = 0; u1 <= 1; u1 += 0.01) {
-      for (let v1 = 0; v1 <= 1; v1 += 0.01) {
-        const point1 = this.evaluate(u1, v1);
-        for (let u2 = 0; u2 <= 1; u2 += 0.01) {
-          for (let v2 = 0; v2 <= 1; v2 += 0.01) {
-            const point2 = surface.evaluate(u2, v2);
-            if (Math.abs(point1.x - point2.x) < tolerance &&
-                Math.abs(point1.y - point2.y) < tolerance &&
-                Math.abs(point1.z - point2.z) < tolerance) {
-              intersections.push({ u1, v1, u2, v2, point: point1 });
-            }
-          }
+    const queue = [{ u1Range: [0, 1], v1Range: [0, 1], u2Range: [0, 1], v2Range: [0, 1] }];
+
+    while (queue.length > 0) {
+      const { u1Range, v1Range, u2Range, v2Range } = queue.shift();
+
+      const u1Mid = (u1Range[0] + u1Range[1]) / 2;
+      const v1Mid = (v1Range[0] + v1Range[1]) / 2;
+      const u2Mid = (u2Range[0] + u2Range[1]) / 2;
+      const v2Mid = (v2Range[0] + v2Range[1]) / 2;
+
+      const point1 = this.evaluate(u1Mid, v1Mid);
+      const point2 = surface.evaluate(u2Mid, v2Mid);
+
+      if (Math.abs(point1.x - point2.x) < tolerance &&
+          Math.abs(point1.y - point2.y) < tolerance &&
+          Math.abs(point1.z - point2.z) < tolerance) {
+        intersections.push({ u1: u1Mid, v1: v1Mid, u2: u2Mid, v2: v2Mid, point: point1 });
+      } else {
+        if (u1Range[1] - u1Range[0] > tolerance || v1Range[1] - v1Range[0] > tolerance ||
+            u2Range[1] - u2Range[0] > tolerance || v2Range[1] - v2Range[0] > tolerance) {
+          queue.push(
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Range[0], v1Mid], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Range[0], v1Mid], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Range[0], v1Mid], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Range[0], v1Mid], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Range[0], v1Mid], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Range[0], v1Mid], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Range[0], v1Mid], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Range[0], v1Mid], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Mid, v2Range[1]] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Mid, v2Range[1]] }
+          );
         }
       }
     }
