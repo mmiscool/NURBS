@@ -459,5 +459,21 @@ describe('BREP', () => {
     expect(jsonData[0]).toHaveProperty('p1');
     expect(jsonData[0]).toHaveProperty('p2');
     expect(jsonData[0]).toHaveProperty('p3');
+
+    // Add assertions to verify the correct mesh triangulation data in the cube.json file
+    jsonData.forEach(triangle => {
+      expect(triangle).toHaveProperty('p1');
+      expect(triangle).toHaveProperty('p2');
+      expect(triangle).toHaveProperty('p3');
+      expect(triangle.p1).toHaveProperty('x');
+      expect(triangle.p1).toHaveProperty('y');
+      expect(triangle.p1).toHaveProperty('z');
+      expect(triangle.p2).toHaveProperty('x');
+      expect(triangle.p2).toHaveProperty('y');
+      expect(triangle.p2).toHaveProperty('z');
+      expect(triangle.p3).toHaveProperty('x');
+      expect(triangle.p3).toHaveProperty('y');
+      expect(triangle.p3).toHaveProperty('z');
+    });
   });
 });
