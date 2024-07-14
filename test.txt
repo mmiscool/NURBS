@@ -1,0 +1,195 @@
+> nurbs@1.0.0 test
+> jest
+
+ FAIL  tests/BREP.test.js
+  ● BREP › should export BREP Taurus to STL
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/
+    Received string:  "solid BREP
+    endsolid BREP
+    "
+
+      342 |     expect(stlContent).toContain('solid BREP');
+      343 |     expect(stlContent).toContain('endsolid BREP');
+    > 344 |     expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
+          |                        ^
+      345 |   });
+      346 |
+      347 |   test('should export BREP Cylinder to STL', () => {
+
+      at Object.<anonymous> (tests/BREP.test.js:344:24)
+
+  ● BREP › should export BREP Cylinder to STL
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/
+    Received string:  "solid BREP
+    endsolid BREP
+    "
+
+      357 |     expect(stlContent).toContain('solid BREP');
+      358 |     expect(stlContent).toContain('endsolid BREP');
+    > 359 |     expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
+          |                        ^
+      360 |   });
+      361 |
+      362 |   test('should export BREP Cone to STL', () => {
+
+      at Object.<anonymous> (tests/BREP.test.js:359:24)
+
+  ● BREP › should export BREP Cone to STL
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/
+    Received string:  "solid BREP
+    endsolid BREP
+    "
+
+      372 |     expect(stlContent).toContain('solid BREP');
+      373 |     expect(stlContent).toContain('endsolid BREP');
+    > 374 |     expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
+          |                        ^
+      375 |   });
+      376 |
+      377 |   test('should export BREP Cube to STL', () => {
+
+      at Object.<anonymous> (tests/BREP.test.js:374:24)
+
+  ● BREP › should export BREP Cube to STL
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/
+    Received string:  "solid BREP
+    endsolid BREP
+    "
+
+      387 |     expect(stlContent).toContain('solid BREP');
+      388 |     expect(stlContent).toContain('endsolid BREP');
+    > 389 |     expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
+          |                        ^
+      390 |   });
+      391 |
+      392 |   test('should export BREP Taurus to JSON', () => {
+
+      at Object.<anonymous> (tests/BREP.test.js:389:24)
+
+  ● BREP › should export BREP Taurus to JSON
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      402 |     const jsonData = JSON.parse(jsonContent);
+      403 |     expect(jsonData).toBeInstanceOf(Array);
+    > 404 |     expect(jsonData.length).toBeGreaterThan(0);
+          |                             ^
+      405 |     expect(jsonData[0]).toHaveProperty('p1');
+      406 |     expect(jsonData[0]).toHaveProperty('p2');
+      407 |     expect(jsonData[0]).toHaveProperty('p3');
+
+      at Object.<anonymous> (tests/BREP.test.js:404:29)
+
+  ● BREP › should export BREP Cylinder to JSON
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      421 |     const jsonData = JSON.parse(jsonContent);
+      422 |     expect(jsonData).toBeInstanceOf(Array);
+    > 423 |     expect(jsonData.length).toBeGreaterThan(0);
+          |                             ^
+      424 |     expect(jsonData[0]).toHaveProperty('p1');
+      425 |     expect(jsonData[0]).toHaveProperty('p2');
+      426 |     expect(jsonData[0]).toHaveProperty('p3');
+
+      at Object.<anonymous> (tests/BREP.test.js:423:29)
+
+  ● BREP › should export BREP Cone to JSON
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      440 |     const jsonData = JSON.parse(jsonContent);
+      441 |     expect(jsonData).toBeInstanceOf(Array);
+    > 442 |     expect(jsonData.length).toBeGreaterThan(0);
+          |                             ^
+      443 |     expect(jsonData[0]).toHaveProperty('p1');
+      444 |     expect(jsonData[0]).toHaveProperty('p2');
+      445 |     expect(jsonData[0]).toHaveProperty('p3');
+
+      at Object.<anonymous> (tests/BREP.test.js:442:29)
+
+  ● BREP › should export BREP Cube to JSON
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      459 |     const jsonData = JSON.parse(jsonContent);
+      460 |     expect(jsonData).toBeInstanceOf(Array);
+    > 461 |     expect(jsonData.length).toBeGreaterThan(0);
+          |                             ^
+      462 |     expect(jsonData[0]).toHaveProperty('p1');
+      463 |     expect(jsonData[0]).toHaveProperty('p2');
+      464 |     expect(jsonData[0]).toHaveProperty('p3');
+
+      at Object.<anonymous> (tests/BREP.test.js:461:29)
+
+ FAIL  tests/Curve.test.js
+  ● Curve › should insert a knot into the curve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: 3
+
+      43 |     const newCurve = curve.insertKnot(0.5);
+      44 |     expect(newCurve.knotVector).toEqual([0, 0, 0, 0.5, 1, 1, 1]);
+    > 45 |     expect(newCurve.controlPoints.length).toBe(4);
+         |                                           ^
+      46 |     expect(newCurve.weights.length).toBe(4);
+      47 |
+      48 |     // Verify the new control points and weights are correctly calculated and inserted
+
+      at Object.<anonymous> (tests/Curve.test.js:45:43)
+
+  ● Curve › should insert a knot into the curve with undefined control points
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 4
+    Received: 3
+
+      68 |     const newCurve = curve.insertKnot(0.5);
+      69 |     expect(newCurve.knotVector).toEqual([0, 0, 0, 0.5, 1, 1, 1]);
+    > 70 |     expect(newCurve.controlPoints.length).toBe(4);
+         |                                           ^
+      71 |     expect(newCurve.weights.length).toBe(4);
+      72 |
+      73 |     // Verify the new control points and weights are correctly calculated and inserted
+
+      at Object.<anonymous> (tests/Curve.test.js:70:43)
+
+ PASS  tests/Surface.test.js
+ PASS  tests/SurfacePrimitives.test.js
+ PASS  tests/CurvePrimitives.test.js
+ PASS  tests/Bottle.test.js
+ PASS  tests/Point.test.js
+ PASS  tests/Vector.test.js
+
+Test Suites: 2 failed, 6 passed, 8 total
+Tests:       10 failed, 65 passed, 75 total
+Snapshots:   0 total
+Time:        1.603 s
+Ran all test suites.
