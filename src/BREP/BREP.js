@@ -2,6 +2,7 @@ import { BREPNode } from './BREPNode';
 import { BREPEdge } from './BREPEdge';
 import { BREPFace } from './BREPFace';
 import { BREPVertex } from './BREPVertex';
+import { createTorus, createCylinder, createCone, createCube } from '../NURBS/SurfacePrimitives';
 
 class BREP {
   constructor() {
@@ -67,19 +68,55 @@ class BREP {
   }
 
   createBREPTaurus(radius, tubeRadius) {
-    // TODO: Implement Taurus creation
+    const torus = createTorus(radius, tubeRadius);
+    const brepNode = new BREPNode();
+    torus.controlPoints.forEach(row => {
+      row.forEach(point => {
+        const vertex = new BREPVertex(point);
+        brepNode.addVertex(vertex);
+      });
+    });
+    this.addNode(brepNode);
+    return brepNode;
   }
 
   createBREPCylinder(radius, height) {
-    // TODO: Implement Cylinder creation
+    const cylinder = createCylinder(radius, height);
+    const brepNode = new BREPNode();
+    cylinder.controlPoints.forEach(row => {
+      row.forEach(point => {
+        const vertex = new BREPVertex(point);
+        brepNode.addVertex(vertex);
+      });
+    });
+    this.addNode(brepNode);
+    return brepNode;
   }
 
   createBREPCone(radius, height) {
-    // TODO: Implement Cone creation
+    const cone = createCone(radius, height);
+    const brepNode = new BREPNode();
+    cone.controlPoints.forEach(row => {
+      row.forEach(point => {
+        const vertex = new BREPVertex(point);
+        brepNode.addVertex(vertex);
+      });
+    });
+    this.addNode(brepNode);
+    return brepNode;
   }
 
   createBREPCube(x, y, z) {
-    // TODO: Implement Cube creation
+    const cube = createCube(x, y, z);
+    const brepNode = new BREPNode();
+    cube.controlPoints.forEach(row => {
+      row.forEach(point => {
+        const vertex = new BREPVertex(point);
+        brepNode.addVertex(vertex);
+      });
+    });
+    this.addNode(brepNode);
+    return brepNode;
   }
 }
 
