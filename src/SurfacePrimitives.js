@@ -1,3 +1,5 @@
+import { Point } from './Point';
+
 function createPlane(width, height) {
   const controlPoints = [
     [new Point(0, 0, 0), new Point(width, 0, 0)],

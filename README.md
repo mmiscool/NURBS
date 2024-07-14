@@ -53,6 +53,8 @@ console.log(pointOnSurface); // { x: 1, y: 1, z: 0 }
 
 ### Creating a Line
 ```javascript
+import { createLine } from './src/CurvePrimitives';
+
 const startPoint = new Point(0, 0, 0);
 const endPoint = new Point(1, 1, 1);
 const line = createLine(startPoint, endPoint);
@@ -61,6 +63,8 @@ console.log(line);
 
 ### Creating a Circle
 ```javascript
+import { createCircle } from './src/CurvePrimitives';
+
 const center = new Point(0, 0, 0);
 const radius = 1;
 const circle = createCircle(center, radius);
@@ -69,6 +73,8 @@ console.log(circle);
 
 ### Creating an Ellipse
 ```javascript
+import { createEllipse } from './src/CurvePrimitives';
+
 const center = new Point(0, 0, 0);
 const radiusX = 2;
 const radiusY = 1;
@@ -78,6 +84,8 @@ console.log(ellipse);
 
 ### Creating an Arc
 ```javascript
+import { createArc } from './src/CurvePrimitives';
+
 const center = new Point(0, 0, 0);
 const radius = 1;
 const startAngle = 0;
@@ -88,6 +96,8 @@ console.log(arc);
 
 ### Creating a Bezier Curve
 ```javascript
+import { createBezierCurve } from './src/CurvePrimitives';
+
 const controlPoints = [new Point(0, 0, 0), new Point(1, 2, 0), new Point(2, 0, 0)];
 const bezierCurve = createBezierCurve(controlPoints);
 console.log(bezierCurve);
@@ -95,6 +105,8 @@ console.log(bezierCurve);
 
 ### Creating a Parabola
 ```javascript
+import { createParabola } from './src/CurvePrimitives';
+
 const vertex = new Point(0, 0, 0);
 const focus = new Point(0, 1, 0);
 const parabola = createParabola(vertex, focus);
@@ -103,6 +115,8 @@ console.log(parabola);
 
 ### Creating a Hyperbola
 ```javascript
+import { createHyperbola } from './src/CurvePrimitives';
+
 const center = new Point(0, 0, 0);
 const a = 1;
 const b = 1;
@@ -112,6 +126,8 @@ console.log(hyperbola);
 
 ### Creating a Spline
 ```javascript
+import { createSpline } from './src/CurvePrimitives';
+
 const controlPoints = [new Point(0, 0, 0), new Point(1, 2, 0), new Point(2, 0, 0)];
 const degree = 2;
 const spline = createSpline(controlPoints, degree);
@@ -120,6 +136,8 @@ console.log(spline);
 
 ### Creating a Plane
 ```javascript
+import { createPlane } from './src/SurfacePrimitives';
+
 const width = 2;
 const height = 2;
 const plane = createPlane(width, height);
@@ -128,6 +146,8 @@ console.log(plane);
 
 ### Creating a Cylinder
 ```javascript
+import { createCylinder } from './src/SurfacePrimitives';
+
 const radius = 1;
 const height = 2;
 const cylinder = createCylinder(radius, height);
@@ -136,6 +156,8 @@ console.log(cylinder);
 
 ### Creating a Cone
 ```javascript
+import { createCone } from './src/SurfacePrimitives';
+
 const radius = 1;
 const height = 2;
 const cone = createCone(radius, height);
@@ -144,6 +166,8 @@ console.log(cone);
 
 ### Creating a Sphere
 ```javascript
+import { createSphere } from './src/SurfacePrimitives';
+
 const radius = 1;
 const sphere = createSphere(radius);
 console.log(sphere);

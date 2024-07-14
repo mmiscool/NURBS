@@ -25,3 +25,5 @@ class Vector {
     );
   }
 }
+
+export { Vector };

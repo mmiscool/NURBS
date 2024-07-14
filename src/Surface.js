@@ -47,3 +47,5 @@ class Surface {
     return a * this.basisFunction(i, d - 1, t, k) + b * this.basisFunction(i + 1, d - 1, t, k);
   }
 }
+
+export { Surface };

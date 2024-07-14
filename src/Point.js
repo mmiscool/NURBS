@@ -29,3 +29,5 @@ class Point {
     this.z = z;
   }
 }
+
+export { Point };
