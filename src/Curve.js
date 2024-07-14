@@ -42,8 +42,11 @@ class Curve {
       return k[i] <= t && t < k[i + 1] ? 1 : 0;
     }
 
-    const a = (t - k[i]) / (k[i + d] - k[i]);
-    const b = (k[i + d + 1] - t) / (k[i + d + 1] - k[i + 1]);
+    const denominatorA = k[i + d] - k[i];
+    const denominatorB = k[i + d + 1] - k[i + 1];
+
+    const a = denominatorA === 0 ? 0 : (t - k[i]) / denominatorA;
+    const b = denominatorB === 0 ? 0 : (k[i + d + 1] - t) / denominatorB;
 
     return a * this.basisFunction(i, d - 1, t, k) + b * this.basisFunction(i + 1, d - 1, t, k);
   }
