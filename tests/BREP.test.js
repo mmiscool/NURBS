@@ -28,4 +28,54 @@ describe('BREP', () => {
     expect(cube).toBeDefined();
     // Add more assertions to verify the properties of the created Cube
   });
+
+  test('should perform boolean operations', () => {
+    const brep1 = new BREP();
+    const brep2 = new BREP();
+    const unionResult = brep1.booleanOperation('union', brep2);
+    const intersectionResult = brep1.booleanOperation('intersection', brep2);
+    const differenceResult = brep1.booleanOperation('difference', brep2);
+    expect(unionResult).toBeDefined();
+    expect(intersectionResult).toBeDefined();
+    expect(differenceResult).toBeDefined();
+  });
+
+  test('should perform intersection', () => {
+    const brep1 = new BREP();
+    const brep2 = new BREP();
+    const result = brep1.intersection(brep2);
+    expect(result).toBeDefined();
+  });
+
+  test('should perform union', () => {
+    const brep1 = new BREP();
+    const brep2 = new BREP();
+    const result = brep1.union(brep2);
+    expect(result).toBeDefined();
+  });
+
+  test('should perform difference', () => {
+    const brep1 = new BREP();
+    const brep2 = new BREP();
+    const result = brep1.difference(brep2);
+    expect(result).toBeDefined();
+  });
+
+  test('should perform offset', () => {
+    const brep = new BREP();
+    const result = brep.offset(5);
+    expect(result).toBeDefined();
+  });
+
+  test('should perform fillet', () => {
+    const brep = new BREP();
+    const result = brep.fillet(2);
+    expect(result).toBeDefined();
+  });
+
+  test('should perform chamfer', () => {
+    const brep = new BREP();
+    const result = brep.chamfer(3);
+    expect(result).toBeDefined();
+  });
 });

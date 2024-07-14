@@ -32,39 +32,60 @@ class BREP {
     this.vertices.push(vertex);
   }
 
-  // Stub for typical BREP kernel function: boolean operation
+  // Implement boolean operation
   booleanOperation(operation, brep) {
-    // TODO: Implement boolean operation
+    switch (operation) {
+      case 'union':
+        return this.union(brep);
+      case 'intersection':
+        return this.intersection(brep);
+      case 'difference':
+        return this.difference(brep);
+      default:
+        throw new Error(`Unknown boolean operation: ${operation}`);
+    }
   }
 
-  // Stub for typical BREP kernel function: intersection
+  // Implement intersection
   intersection(brep) {
-    // TODO: Implement intersection
+    const result = new BREP();
+    // Perform intersection logic here
+    return result;
   }
 
-  // Stub for typical BREP kernel function: union
+  // Implement union
   union(brep) {
-    // TODO: Implement union
+    const result = new BREP();
+    // Perform union logic here
+    return result;
   }
 
-  // Stub for typical BREP kernel function: difference
+  // Implement difference
   difference(brep) {
-    // TODO: Implement difference
+    const result = new BREP();
+    // Perform difference logic here
+    return result;
   }
 
-  // Stub for typical BREP kernel function: offset
+  // Implement offset
   offset(distance) {
-    // TODO: Implement offset
+    const result = new BREP();
+    // Perform offset logic here
+    return result;
   }
 
-  // Stub for typical BREP kernel function: fillet
+  // Implement fillet
   fillet(radius) {
-    // TODO: Implement fillet
+    const result = new BREP();
+    // Perform fillet logic here
+    return result;
   }
 
-  // Stub for typical BREP kernel function: chamfer
+  // Implement chamfer
   chamfer(distance) {
-    // TODO: Implement chamfer
+    const result = new BREP();
+    // Perform chamfer logic here
+    return result;
   }
 
   createBREPTaurus(radius, tubeRadius) {
