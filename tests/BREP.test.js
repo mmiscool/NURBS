@@ -250,10 +250,12 @@ describe('BREP', () => {
     const vertex2 = new BREPVertex(new Point(1, 0, 0));
     const edge1 = new BREPEdge(vertex1, vertex2, 0);
     const face1 = new BREPFace(new Surface([[new Point(0, 0, 0), new Point(1, 0, 0)], [new Point(0, 1, 0), new Point(1, 1, 0)]], [1, 1], [[0, 0, 1, 1], [0, 0, 1, 1]]), 0);
+    const face2 = new BREPFace(new Surface([[new Point(0, 0, 0), new Point(1, 0, 0)], [new Point(0, 1, 0), new Point(1, 1, 0)]], [1, 1], [[0, 0, 1, 1], [0, 0, 1, 1]]), 1);
     brep.addVertex(vertex1);
     brep.addVertex(vertex2);
     brep.addEdge(edge1);
     brep.addFace(face1);
+    brep.addFace(face2);
 
     const face = brep.faces[0];
     const offsetFace = face.offset(5);
@@ -285,7 +287,7 @@ describe('BREP', () => {
     brep.addEdge(edge1);
     brep.addFace(face1);
 
-    const node = brep.nodes[0] || { edges: [], faces: [], vertices: [] };
+    const node = brep.nodes[0] || new BREPNode();
     const edge = node.edges[0];
     const face = node.faces[0];
     const vertex = node.vertices[0];
