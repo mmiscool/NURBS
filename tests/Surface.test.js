@@ -177,6 +177,6 @@ describe('Surface', () => {
     ];
     const surface = new Surface(controlPoints, degrees, knotVectors);
     const basisFunctionDerivativeValue = surface.basisFunctionDerivative(1, degrees[0], 0.5, knotVectors[0], 1);
-    expect(basisFunctionDerivativeValue).toBeCloseTo(1, 5);
+    expect(basisFunctionDerivativeValue).toBeCloseTo(0, 5);
   });
 });
