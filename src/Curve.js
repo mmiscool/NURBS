@@ -216,7 +216,7 @@ class Curve {
     return intersections;
   }
 
-  approximate(points, degree) {
+  static approximate(points, degree) {
     const n = points.length - 1;
     const k = new Array(n + degree + 2).fill(0).map((_, i) => i / (n + degree + 1));
 
