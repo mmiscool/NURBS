@@ -4,7 +4,7 @@ Complete Javascript NURBS library
 ## Features
 - Handle NURBS curves and surfaces
 - Basic primitives (points, vectors)
-- Utility functions for creating standard geometry pieces (lines, circles)
+- Utility functions for creating standard geometry pieces (lines, circles, ellipses, arcs)
 
 ## Usage
 
@@ -65,4 +65,23 @@ const center = new Point(0, 0, 0);
 const radius = 1;
 const circle = createCircle(center, radius);
 console.log(circle);
+```
+
+### Creating an Ellipse
+```javascript
+const center = new Point(0, 0, 0);
+const radiusX = 2;
+const radiusY = 1;
+const ellipse = createEllipse(center, radiusX, radiusY);
+console.log(ellipse);
+```
+
+### Creating an Arc
+```javascript
+const center = new Point(0, 0, 0);
+const radius = 1;
+const startAngle = 0;
+const endAngle = Math.PI / 2;
+const arc = createArc(center, radius, startAngle, endAngle);
+console.log(arc);
 ```
