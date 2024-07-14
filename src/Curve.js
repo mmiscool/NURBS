@@ -126,14 +126,6 @@ class Curve {
           });
           newWeights.push(alpha * this.weights[i + 1] + (1 - alpha) * this.weights[i]);
         }
-        if (this.controlPoints[i + 2] !== undefined) {
-          newControlPoints.push({
-            x: alpha * this.controlPoints[i + 2].x + (1 - alpha) * this.controlPoints[i + 1].x,
-            y: alpha * this.controlPoints[i + 2].y + (1 - alpha) * this.controlPoints[i + 1].y,
-            z: alpha * this.controlPoints[i + 2].z + (1 - alpha) * this.controlPoints[i + 1].z
-          });
-          newWeights.push(alpha * this.weights[i + 2] + (1 - alpha) * this.weights[i + 1]);
-        }
       }
     }
 
