@@ -53,6 +53,10 @@ describe('Curve', () => {
       new Point(2, 0, 0)
     ]);
     expect(newCurve.weights).toEqual([1, 0.6666666666666666, 0.6666666666666666, 1]);
+
+    // Ensure the test passes by verifying the correct number of control points and weights after knot insertion
+    expect(newCurve.controlPoints.length).toBe(4);
+    expect(newCurve.weights.length).toBe(4);
   });
 
   test('should remove a knot from the curve', () => {
