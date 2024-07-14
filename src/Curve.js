@@ -135,14 +135,14 @@ class Curve {
 
     for (let i = k - p + 1; i <= k; i++) {
       const alpha = (t - U[i]) / (U[i + p + 1] - U[i]);
-      if (P[i] !== undefined && P[i - 1] !== undefined) {
-        newControlPoints.push({
-          x: alpha * P[i].x + (1 - alpha) * P[i - 1].x,
-          y: alpha * P[i].y + (1 - alpha) * P[i - 1].y,
-          z: alpha * P[i].z + (1 - alpha) * P[i - 1].z
-        });
-        newWeights.push(alpha * W[i] + (1 - alpha) * W[i - 1]);
-      }
+      const prevPoint = P[i - 1] || { x: 0, y: 0, z: 0 };
+      const currPoint = P[i] || { x: 0, y: 0, z: 0 };
+      newControlPoints.push({
+        x: alpha * currPoint.x + (1 - alpha) * prevPoint.x,
+        y: alpha * currPoint.y + (1 - alpha) * prevPoint.y,
+        z: alpha * currPoint.z + (1 - alpha) * prevPoint.z
+      });
+      newWeights.push(alpha * W[i] + (1 - alpha) * W[i - 1]);
     }
 
     for (let i = k + 1; i <= n; i++) {
