@@ -532,6 +532,28 @@ const cube = brep.createBREPCube(3, 3, 3);
 console.log(cube);
 ```
 
+### Tracking IDs for Faces and Edges in BREP Data Structures
+The BREP data structures now support tracking unique IDs for faces and edges. Each face and edge is assigned a unique ID when it is created. This allows for easier identification and management of faces and edges within the BREP data structures.
+
+#### Creating a BREP Edge with ID
+```javascript
+import { BREPEdge } from './src/BREP/BREPEdge';
+
+const startVertex = new Point(0, 0, 0);
+const endVertex = new Point(1, 1, 1);
+const edge = new BREPEdge(startVertex, endVertex, 1);
+console.log(edge.id); // 1
+```
+
+#### Creating a BREP Face with ID
+```javascript
+import { BREPFace } from './src/BREP/BREPFace';
+
+const surface = new Surface(controlPoints, degrees, knotVectors);
+const face = new BREPFace(surface, 1);
+console.log(face.id); // 1
+```
+
 ## Running Tests
 
 To run the test suite using Jest, follow these steps:

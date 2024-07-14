@@ -9,6 +9,8 @@ class BREP {
     this.edges = [];
     this.faces = [];
     this.vertices = [];
+    this.edgeIdCounter = 0;
+    this.faceIdCounter = 0;
   }
 
   addNode(node) {
@@ -16,10 +18,12 @@ class BREP {
   }
 
   addEdge(edge) {
+    edge.id = this.edgeIdCounter++;
     this.edges.push(edge);
   }
 
   addFace(face) {
+    face.id = this.faceIdCounter++;
     this.faces.push(face);
   }
 

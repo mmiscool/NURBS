@@ -1,6 +1,7 @@
 class BREPFace {
-  constructor(surface) {
+  constructor(surface, id) {
     this.surface = surface;
+    this.id = id;
   }
 }
 
