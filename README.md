@@ -117,3 +117,34 @@ const degree = 2;
 const spline = createSpline(controlPoints, degree);
 console.log(spline);
 ```
+
+### Creating a Plane
+```javascript
+const width = 2;
+const height = 2;
+const plane = createPlane(width, height);
+console.log(plane);
+```
+
+### Creating a Cylinder
+```javascript
+const radius = 1;
+const height = 2;
+const cylinder = createCylinder(radius, height);
+console.log(cylinder);
+```
+
+### Creating a Cone
+```javascript
+const radius = 1;
+const height = 2;
+const cone = createCone(radius, height);
+console.log(cone);
+```
+
+### Creating a Sphere
+```javascript
+const radius = 1;
+const sphere = createSphere(radius);
+console.log(sphere);
+```
