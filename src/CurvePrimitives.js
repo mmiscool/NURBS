@@ -143,7 +143,7 @@ function createRationalNURBSCurve(controlPoints, weights, degree) {
 function trimCurve(curve, start, end) {
   const trimmedControlPoints = curve.controlPoints.slice(start, end + 1);
   const trimmedWeights = curve.weights.slice(start, end + 1);
-  const trimmedKnotVector = curve.knotVector.slice(start, end + curve.degree + 2);
+  const trimmedKnotVector = curve.knotVector.slice(start, end + curve.degree + 1);
   return {
     controlPoints: trimmedControlPoints,
     weights: trimmedWeights,
