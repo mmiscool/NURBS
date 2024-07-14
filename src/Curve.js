@@ -126,6 +126,15 @@ class Curve {
           });
           newWeights.push(alpha * this.weights[i + 1] + (1 - alpha) * this.weights[i]);
         }
+        if (i + 2 <= n) {
+          const alpha2 = (t - k[i]) / (k[i + d + 1] - k[i]);
+          newControlPoints.push({
+            x: alpha2 * this.controlPoints[i + 2].x + (1 - alpha2) * this.controlPoints[i].x,
+            y: alpha2 * this.controlPoints[i + 2].y + (1 - alpha2) * this.controlPoints[i].y,
+            z: alpha2 * this.controlPoints[i + 2].z + (1 - alpha2) * this.controlPoints[i].z
+          });
+          newWeights.push(alpha2 * this.weights[i + 2] + (1 - alpha2) * this.weights[i]);
+        }
       }
     }
 
