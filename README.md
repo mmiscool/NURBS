@@ -85,3 +85,35 @@ const endAngle = Math.PI / 2;
 const arc = createArc(center, radius, startAngle, endAngle);
 console.log(arc);
 ```
+
+### Creating a Bezier Curve
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 2, 0), new Point(2, 0, 0)];
+const bezierCurve = createBezierCurve(controlPoints);
+console.log(bezierCurve);
+```
+
+### Creating a Parabola
+```javascript
+const vertex = new Point(0, 0, 0);
+const focus = new Point(0, 1, 0);
+const parabola = createParabola(vertex, focus);
+console.log(parabola);
+```
+
+### Creating a Hyperbola
+```javascript
+const center = new Point(0, 0, 0);
+const a = 1;
+const b = 1;
+const hyperbola = createHyperbola(center, a, b);
+console.log(hyperbola);
+```
+
+### Creating a Spline
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 2, 0), new Point(2, 0, 0)];
+const degree = 2;
+const spline = createSpline(controlPoints, degree);
+console.log(spline);
+```

@@ -69,4 +69,62 @@ function createArc(center, radius, startAngle, endAngle) {
   };
 }
 
-export { createLine, createCircle, createEllipse, createArc };
+function createBezierCurve(controlPoints) {
+  const degree = controlPoints.length - 1;
+  const knotVector = [];
+  for (let i = 0; i <= degree; i++) {
+    knotVector.push(0);
+  }
+  for (let i = 0; i <= degree; i++) {
+    knotVector.push(1);
+  }
+  return {
+    controlPoints,
+    degree,
+    knotVector
+  };
+}
+
+function createParabola(vertex, focus) {
+  const controlPoints = [
+    { x: vertex.x - 1, y: vertex.y, z: vertex.z },
+    vertex,
+    { x: vertex.x + 1, y: vertex.y, z: vertex.z }
+  ];
+  const degree = 2;
+  const knotVector = [0, 0, 0, 1, 1, 1];
+  return {
+    controlPoints,
+    degree,
+    knotVector
+  };
+}
+
+function createHyperbola(center, a, b) {
+  const controlPoints = [
+    { x: center.x - a, y: center.y, z: center.z },
+    center,
+    { x: center.x + a, y: center.y, z: center.z }
+  ];
+  const degree = 2;
+  const knotVector = [0, 0, 0, 1, 1, 1];
+  return {
+    controlPoints,
+    degree,
+    knotVector
+  };
+}
+
+function createSpline(controlPoints, degree) {
+  const knotVector = [];
+  for (let i = 0; i < controlPoints.length + degree + 1; i++) {
+    knotVector.push(i);
+  }
+  return {
+    controlPoints,
+    degree,
+    knotVector
+  };
+}
+
+export { createLine, createCircle, createEllipse, createArc, createBezierCurve, createParabola, createHyperbola, createSpline };
