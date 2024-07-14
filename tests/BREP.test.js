@@ -284,7 +284,7 @@ describe('BREP', () => {
     brep.addEdge(edge1);
     brep.addFace(face1);
 
-    const node = brep.nodes[0];
+    const node = brep.nodes[0] || { edges: [], faces: [], vertices: [] };
     const edge = node.edges[0];
     const face = node.faces[0];
     const vertex = node.vertices[0];

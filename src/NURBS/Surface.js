@@ -307,6 +307,16 @@ class Surface {
 
     return new Surface(controlPoints, degrees, [ku, kv], weights);
   }
+
+  trim(uStart, uEnd, vStart, vEnd) {
+    const trimmedControlPoints = this.controlPoints.slice(uStart, uEnd + 1).map(row => row.slice(vStart, vEnd + 1));
+    const trimmedWeights = this.weights.slice(uStart, uEnd + 1).map(row => row.slice(vStart, vEnd + 1));
+    const trimmedKnotVectors = [
+      this.knotVectors[0].slice(uStart, uEnd + this.degrees[0] + 1),
+      this.knotVectors[1].slice(vStart, vEnd + this.degrees[1] + 1)
+    ];
+    return new Surface(trimmedControlPoints, this.degrees, trimmedKnotVectors, trimmedWeights);
+  }
 }
 
 export { Surface };
