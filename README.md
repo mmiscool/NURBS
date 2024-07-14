@@ -424,6 +424,29 @@ const intersections = surface1.intersect(surface2);
 console.log(intersections);
 ```
 
+### Intersecting a NURBS Curve and Surface
+```javascript
+const controlPointsCurve = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degreeCurve = 2;
+const knotVectorCurve = [0, 0, 0, 1, 1, 1];
+const curve = new Curve(controlPointsCurve, degreeCurve, knotVectorCurve);
+
+const controlPointsSurface = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degreesSurface = [2, 2];
+const knotVectorsSurface = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface = new Surface(controlPointsSurface, degreesSurface, knotVectorsSurface);
+
+const intersections = curve.intersectSurface(surface);
+console.log(intersections);
+```
+
 ### Approximating a NURBS Curve
 ```javascript
 const points = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];

@@ -193,6 +193,27 @@ class Curve {
     return intersections;
   }
 
+  intersectSurface(surface) {
+    const intersections = [];
+    const tolerance = 1e-6;
+
+    for (let t = 0; t <= 1; t += 0.01) {
+      const pointOnCurve = this.evaluate(t);
+      for (let u = 0; u <= 1; u += 0.01) {
+        for (let v = 0; v <= 1; v += 0.01) {
+          const pointOnSurface = surface.evaluate(u, v);
+          if (Math.abs(pointOnCurve.x - pointOnSurface.x) < tolerance &&
+              Math.abs(pointOnCurve.y - pointOnSurface.y) < tolerance &&
+              Math.abs(pointOnCurve.z - pointOnSurface.z) < tolerance) {
+            intersections.push({ t, u, v, point: pointOnCurve });
+          }
+        }
+      }
+    }
+
+    return intersections;
+  }
+
   approximate(points, degree) {
     const n = points.length - 1;
     const k = new Array(n + degree + 2).fill(0).map((_, i) => i / (n + degree + 1));
