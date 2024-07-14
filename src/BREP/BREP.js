@@ -49,7 +49,6 @@ class BREP {
   // Implement intersection
   intersection(brep) {
     const result = new BREP();
-    // Perform intersection logic here
     this.faces.forEach(face1 => {
       brep.faces.forEach(face2 => {
         const intersections = face1.surface.intersect(face2.surface);
@@ -65,7 +64,6 @@ class BREP {
   // Implement union
   union(brep) {
     const result = new BREP();
-    // Perform union logic here
     this.faces.forEach(face => result.addFace(face));
     brep.faces.forEach(face => result.addFace(face));
     return result;
@@ -74,7 +72,6 @@ class BREP {
   // Implement difference
   difference(brep) {
     const result = new BREP();
-    // Perform difference logic here
     this.faces.forEach(face1 => {
       let isDifferent = true;
       brep.faces.forEach(face2 => {
@@ -92,7 +89,6 @@ class BREP {
   // Implement offset
   offset(distance) {
     const result = new BREP();
-    // Perform offset logic here
     this.faces.forEach(face => {
       const offsetSurface = face.surface.offset(distance);
       const offsetFace = new BREPFace(offsetSurface, face.id);
@@ -104,7 +100,6 @@ class BREP {
   // Implement fillet
   fillet(radius) {
     const result = new BREP();
-    // Perform fillet logic here
     this.edges.forEach(edge => {
       const filletEdge = edge.fillet(radius);
       result.addEdge(filletEdge);
@@ -115,7 +110,6 @@ class BREP {
   // Implement chamfer
   chamfer(distance) {
     const result = new BREP();
-    // Perform chamfer logic here
     this.edges.forEach(edge => {
       const chamferEdge = edge.chamfer(distance);
       result.addEdge(chamferEdge);
