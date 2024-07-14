@@ -150,6 +150,14 @@ class Curve {
 
     const newKnotVector = [...U.slice(0, k + 1), t, ...U.slice(k + 1)];
 
+    // Ensure the new control points and weights are correctly calculated and inserted
+    if (newControlPoints.length !== n + 2) {
+      throw new Error("Incorrect number of control points after knot insertion.");
+    }
+    if (newWeights.length !== n + 2) {
+      throw new Error("Incorrect number of weights after knot insertion.");
+    }
+
     return new Curve(newControlPoints, p, newKnotVector, newWeights);
   }
 
