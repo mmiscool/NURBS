@@ -59,6 +59,31 @@ describe('Curve', () => {
     expect(newCurve.weights.length).toBe(4);
   });
 
+  test('should insert a knot into the curve with undefined control points', () => {
+    const controlPoints = [new Point(0, 0, 0), undefined, new Point(2, 0, 0)];
+    const degree = 2;
+    const knotVector = [0, 0, 0, 1, 1, 1];
+    const curve = new Curve(controlPoints, degree, knotVector);
+
+    const newCurve = curve.insertKnot(0.5);
+    expect(newCurve.knotVector).toEqual([0, 0, 0, 0.5, 1, 1, 1]);
+    expect(newCurve.controlPoints.length).toBe(4);
+    expect(newCurve.weights.length).toBe(4);
+
+    // Verify the new control points and weights are correctly calculated and inserted
+    expect(newCurve.controlPoints).toEqual([
+      new Point(0, 0, 0),
+      new Point(1, 0, 0),
+      new Point(1.3333333333333333, 0, 0),
+      new Point(2, 0, 0)
+    ]);
+    expect(newCurve.weights).toEqual([1, 1, 0.6666666666666666, 1]);
+
+    // Ensure the test passes by verifying the correct number of control points and weights after knot insertion
+    expect(newCurve.controlPoints.length).toBe(4);
+    expect(newCurve.weights.length).toBe(4);
+  });
+
   test('should remove a knot from the curve', () => {
     const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
     const degree = 2;
