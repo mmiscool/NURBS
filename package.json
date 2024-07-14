@@ -10,6 +10,9 @@
     "jest": "^27.0.0",
     "@babel/preset-env": "^7.14.5"
   },
+  "dependencies": {
+    "verb-nurbs": "^0.1.0"
+  },
   "jest": {
     "testMatch": ["**/tests/**/*.js"],
     "testPathIgnorePatterns": ["/node_modules/"],
