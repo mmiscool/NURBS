@@ -122,7 +122,7 @@ class Curve {
       }
     }
     if (k === -1) {
-      throw new Error("Knot value t is out of bounds.");
+      throw new Error(`Knot value t is out of bounds. Valid range is [${U[0]}, ${U[U.length - 1]}].`);
     }
 
     const newControlPoints = [];

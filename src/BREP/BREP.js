@@ -118,6 +118,9 @@ class BREP {
   }
 
   createBREPTaurus(radius, tubeRadius) {
+    if (radius <= 0 || tubeRadius <= 0) {
+      throw new Error("Radius and tube radius must be positive values.");
+    }
     const torus = createTorus(radius, tubeRadius);
     const brepNode = new BREPNode();
     torus.controlPoints.forEach(row => {
@@ -131,6 +134,9 @@ class BREP {
   }
 
   createBREPCylinder(radius, height) {
+    if (radius <= 0 || height <= 0) {
+      throw new Error("Radius and height must be positive values.");
+    }
     const cylinder = createCylinder(radius, height);
     const brepNode = new BREPNode();
     cylinder.controlPoints.forEach(row => {
@@ -144,6 +150,9 @@ class BREP {
   }
 
   createBREPCone(radius, height) {
+    if (radius <= 0 || height <= 0) {
+      throw new Error("Radius and height must be positive values.");
+    }
     const cone = createCone(radius, height);
     const brepNode = new BREPNode();
     cone.controlPoints.forEach(row => {
@@ -157,6 +166,9 @@ class BREP {
   }
 
   createBREPCube(x, y, z) {
+    if (x <= 0 || y <= 0 || z <= 0) {
+      throw new Error("Dimensions must be positive values.");
+    }
     const cube = createCube(x, y, z);
     const brepNode = new BREPNode();
     cube.controlPoints.forEach(row => {
