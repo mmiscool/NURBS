@@ -116,4 +116,13 @@ function trimSurface(surface, uStart, uEnd, vStart, vEnd) {
   };
 }
 
-export { createPlane, createCylinder, createCone, createSphere, createRationalNURBSSurface, trimSurface };
+function createNURBSFace(controlPoints, degrees, knotVectors, weights = null) {
+  return {
+    controlPoints,
+    degrees,
+    knotVectors,
+    weights: weights || controlPoints.map(row => new Array(row.length).fill(1))
+  };
+}
+
+export { createPlane, createCylinder, createCone, createSphere, createRationalNURBSSurface, trimSurface, createNURBSFace };

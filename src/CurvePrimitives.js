@@ -152,4 +152,13 @@ function trimCurve(curve, start, end) {
   };
 }
 
-export { createLine, createCircle, createEllipse, createArc, createBezierCurve, createParabola, createHyperbola, createSpline, createRationalNURBSCurve, trimCurve };
+function createNURBSEdge(controlPoints, degree, knotVector, weights = null) {
+  return {
+    controlPoints,
+    degree,
+    knotVector,
+    weights: weights || new Array(controlPoints.length).fill(1)
+  };
+}
+
+export { createLine, createCircle, createEllipse, createArc, createBezierCurve, createParabola, createHyperbola, createSpline, createRationalNURBSCurve, trimCurve, createNURBSEdge };

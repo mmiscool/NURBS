@@ -12,7 +12,8 @@ import {
   createHyperbola,
   createSpline,
   createRationalNURBSCurve,
-  trimCurve
+  trimCurve,
+  createNURBSEdge
 } from '../src/CurvePrimitives';
 import {
   createPlane,
@@ -20,7 +21,8 @@ import {
   createCone,
   createSphere,
   createRationalNURBSSurface,
-  trimSurface
+  trimSurface,
+  createNURBSFace
 } from '../src/SurfacePrimitives';
 
 describe('Point', () => {
@@ -282,6 +284,17 @@ describe('CurvePrimitives', () => {
     expect(trimmedCurve.degree).toBe(degree);
     expect(trimmedCurve.knotVector.length).toBe(degree + 2);
   });
+
+  test('should create a NURBS edge', () => {
+    const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+    const degree = 2;
+    const knotVector = [0, 0, 0, 1, 1, 1];
+    const edge = createNURBSEdge(controlPoints, degree, knotVector);
+    expect(edge.controlPoints).toEqual(controlPoints);
+    expect(edge.degree).toBe(degree);
+    expect(edge.knotVector).toEqual(knotVector);
+    expect(edge.weights).toEqual(new Array(controlPoints.length).fill(1));
+  });
 });
 
 describe('SurfacePrimitives', () => {
@@ -369,5 +382,23 @@ describe('SurfacePrimitives', () => {
     expect(trimmedSurface.degrees).toEqual(degrees);
     expect(trimmedSurface.knotVectors[0].length).toBe(degrees[0] + 2);
     expect(trimmedSurface.knotVectors[1].length).toBe(degrees[1] + 2);
+  });
+
+  test('should create a NURBS face', () => {
+    const controlPoints = [
+      [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+      [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+      [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+    ];
+    const degrees = [2, 2];
+    const knotVectors = [
+      [0, 0, 0, 1, 1, 1],
+      [0, 0, 0, 1, 1, 1]
+    ];
+    const face = createNURBSFace(controlPoints, degrees, knotVectors);
+    expect(face.controlPoints).toEqual(controlPoints);
+    expect(face.degrees).toEqual(degrees);
+    expect(face.knotVectors).toEqual(knotVectors);
+    expect(face.weights).toEqual(controlPoints.map(row => new Array(row.length).fill(1)));
   });
 });

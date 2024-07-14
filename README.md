@@ -467,6 +467,35 @@ const surface = Surface.approximate(points, degrees);
 console.log(surface);
 ```
 
+### Creating a NURBS Face
+```javascript
+import { createNURBSFace } from './src/SurfacePrimitives';
+
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const knotVectors = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const face = createNURBSFace(controlPoints, degrees, knotVectors);
+console.log(face);
+```
+
+### Creating a NURBS Edge
+```javascript
+import { createNURBSEdge } from './src/CurvePrimitives';
+
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const knotVector = [0, 0, 0, 1, 1, 1];
+const edge = createNURBSEdge(controlPoints, degree, knotVector);
+console.log(edge);
+```
+
 ## Running Tests
 
 To run the test suite using Jest, follow these steps:
