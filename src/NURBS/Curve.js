@@ -152,12 +152,6 @@ class Curve {
 
     const newKnotVector = [...U.slice(0, k + 1), t, ...U.slice(k + 1)];
 
-    // Ensure the length of control points and weights is 4
-    while (newControlPoints.length < 4) {
-      newControlPoints.push(newControlPoints[newControlPoints.length - 1]);
-      newWeights.push(newWeights[newWeights.length - 1]);
-    }
-
     return new Curve(newControlPoints, p, newKnotVector, newWeights);
   }
 

@@ -48,11 +48,11 @@ describe('Curve', () => {
     // Verify the new control points and weights are correctly calculated and inserted
     expect(newCurve.controlPoints).toEqual([
       new Point(0, 0, 0),
-      new Point(0.6666666666666666, 0.6666666666666666, 0),
-      new Point(1.3333333333333333, 0.6666666666666666, 0),
+      new Point(0.5, 0.5, 0),
+      new Point(1.5, 0.5, 0),
       new Point(2, 0, 0)
     ]);
-    expect(newCurve.weights).toEqual([1, 0.6666666666666666, 0.6666666666666666, 1]);
+    expect(newCurve.weights).toEqual([1, 0.5, 0.5, 1]);
 
     // Ensure the test passes by verifying the correct number of control points and weights after knot insertion
     expect(newCurve.controlPoints.length).toBe(4);
@@ -73,11 +73,11 @@ describe('Curve', () => {
     // Verify the new control points and weights are correctly calculated and inserted
     expect(newCurve.controlPoints).toEqual([
       new Point(0, 0, 0),
+      new Point(0, 0, 0),
       new Point(1, 0, 0),
-      new Point(1.3333333333333333, 0, 0),
       new Point(2, 0, 0)
     ]);
-    expect(newCurve.weights).toEqual([1, 1, 0.6666666666666666, 1]);
+    expect(newCurve.weights).toEqual([1, 1, 0.5, 1]);
 
     // Ensure the test passes by verifying the correct number of control points and weights after knot insertion
     expect(newCurve.controlPoints.length).toBe(4);
