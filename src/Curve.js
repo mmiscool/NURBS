@@ -26,6 +26,10 @@ class Curve {
       weightSum += weight;
     }
 
+    if (weightSum === 0) {
+      return { x: 0, y: 0, z: 0 };
+    }
+
     point.x /= weightSum;
     point.y /= weightSum;
     point.z /= weightSum;
@@ -59,11 +63,22 @@ class Curve {
     }
 
     let point = { x: 0, y: 0, z: 0 };
+    let weightSum = 0;
     for (let i = 0; i <= n; i++) {
-      point.x += basisFunctions[i] * this.controlPoints[i].x;
-      point.y += basisFunctions[i] * this.controlPoints[i].y;
-      point.z += basisFunctions[i] * this.controlPoints[i].z;
+      const weight = basisFunctions[i] * this.weights[i];
+      point.x += weight * this.controlPoints[i].x;
+      point.y += weight * this.controlPoints[i].y;
+      point.z += weight * this.controlPoints[i].z;
+      weightSum += weight;
     }
+
+    if (weightSum === 0) {
+      return { x: 0, y: 0, z: 0 };
+    }
+
+    point.x /= weightSum;
+    point.y /= weightSum;
+    point.z /= weightSum;
 
     return point;
   }

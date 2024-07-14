@@ -37,6 +37,10 @@ class Surface {
       }
     }
 
+    if (weightSum === 0) {
+      return { x: 0, y: 0, z: 0 };
+    }
+
     point.x /= weightSum;
     point.y /= weightSum;
     point.z /= weightSum;
@@ -79,13 +83,24 @@ class Surface {
     }
 
     let point = { x: 0, y: 0, z: 0 };
+    let weightSum = 0;
     for (let i = 0; i <= n; i++) {
       for (let j = 0; j <= m; j++) {
-        point.x += basisFunctionsU[i] * basisFunctionsV[j] * this.controlPoints[i][j].x;
-        point.y += basisFunctionsU[i] * basisFunctionsV[j] * this.controlPoints[i][j].y;
-        point.z += basisFunctionsU[i] * basisFunctionsV[j] * this.controlPoints[i][j].z;
+        const weight = basisFunctionsU[i] * basisFunctionsV[j] * this.weights[i][j];
+        point.x += weight * this.controlPoints[i][j].x;
+        point.y += weight * this.controlPoints[i][j].y;
+        point.z += weight * this.controlPoints[i][j].z;
+        weightSum += weight;
       }
     }
+
+    if (weightSum === 0) {
+      return { x: 0, y: 0, z: 0 };
+    }
+
+    point.x /= weightSum;
+    point.y /= weightSum;
+    point.z /= weightSum;
 
     return point;
   }
