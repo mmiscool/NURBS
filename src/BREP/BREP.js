@@ -61,6 +61,22 @@ class BREP {
   chamfer(distance) {
     // TODO: Implement chamfer
   }
+
+  createBREPTaurus(radius, tubeRadius) {
+    // TODO: Implement Taurus creation
+  }
+
+  createBREPCylinder(radius, height) {
+    // TODO: Implement Cylinder creation
+  }
+
+  createBREPCone(radius, height) {
+    // TODO: Implement Cone creation
+  }
+
+  createBREPCube(x, y, z) {
+    // TODO: Implement Cube creation
+  }
 }
 
 export { BREP };

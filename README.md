@@ -496,6 +496,42 @@ const edge = createNURBSEdge(controlPoints, degree, knotVector);
 console.log(edge);
 ```
 
+### Creating a BREP Taurus
+```javascript
+import { BREP } from './src/BREP/BREP';
+
+const brep = new BREP();
+const taurus = brep.createBREPTaurus(5, 2);
+console.log(taurus);
+```
+
+### Creating a BREP Cylinder
+```javascript
+import { BREP } from './src/BREP/BREP';
+
+const brep = new BREP();
+const cylinder = brep.createBREPCylinder(3, 7);
+console.log(cylinder);
+```
+
+### Creating a BREP Cone
+```javascript
+import { BREP } from './src/BREP/BREP';
+
+const brep = new BREP();
+const cone = brep.createBREPCone(3, 7);
+console.log(cone);
+```
+
+### Creating a BREP Cube
+```javascript
+import { BREP } from './src/BREP/BREP';
+
+const brep = new BREP();
+const cube = brep.createBREPCube(3, 3, 3);
+console.log(cube);
+```
+
 ## Running Tests
 
 To run the test suite using Jest, follow these steps:
