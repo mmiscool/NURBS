@@ -147,18 +147,22 @@ class Surface {
         if (ku[i] <= u && u < ku[i + 1] && kv[j] <= v && v < kv[j + 1]) {
           const alphaU = (u - ku[i]) / (ku[i + du] - ku[i]);
           const alphaV = (v - kv[j]) / (kv[j + dv] - kv[j]);
-          newControlPoints[i].push({
-            x: alphaU * this.controlPoints[i + 1][j].x + (1 - alphaU) * this.controlPoints[i][j].x,
-            y: alphaU * this.controlPoints[i + 1][j].y + (1 - alphaU) * this.controlPoints[i][j].y,
-            z: alphaU * this.controlPoints[i + 1][j].z + (1 - alphaU) * this.controlPoints[i][j].z
-          });
-          newWeights[i].push(alphaU * this.weights[i + 1][j] + (1 - alphaU) * this.weights[i][j]);
-          newControlPoints[i].push({
-            x: alphaV * this.controlPoints[i][j + 1].x + (1 - alphaV) * this.controlPoints[i][j].x,
-            y: alphaV * this.controlPoints[i][j + 1].y + (1 - alphaV) * this.controlPoints[i][j].y,
-            z: alphaV * this.controlPoints[i][j + 1].z + (1 - alphaV) * this.controlPoints[i][j].z
-          });
-          newWeights[i].push(alphaV * this.weights[i][j + 1] + (1 - alphaV) * this.weights[i][j]);
+          if (this.controlPoints[i + 1]) {
+            newControlPoints[i].push({
+              x: alphaU * this.controlPoints[i + 1][j].x + (1 - alphaU) * this.controlPoints[i][j].x,
+              y: alphaU * this.controlPoints[i + 1][j].y + (1 - alphaU) * this.controlPoints[i][j].y,
+              z: alphaU * this.controlPoints[i + 1][j].z + (1 - alphaU) * this.controlPoints[i][j].z
+            });
+            newWeights[i].push(alphaU * this.weights[i + 1][j] + (1 - alphaU) * this.weights[i][j]);
+          }
+          if (this.controlPoints[i][j + 1]) {
+            newControlPoints[i].push({
+              x: alphaV * this.controlPoints[i][j + 1].x + (1 - alphaV) * this.controlPoints[i][j].x,
+              y: alphaV * this.controlPoints[i][j + 1].y + (1 - alphaV) * this.controlPoints[i][j].y,
+              z: alphaV * this.controlPoints[i][j + 1].z + (1 - alphaV) * this.controlPoints[i][j].z
+            });
+            newWeights[i].push(alphaV * this.weights[i][j + 1] + (1 - alphaV) * this.weights[i][j]);
+          }
         }
       }
     }
