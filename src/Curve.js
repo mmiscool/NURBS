@@ -118,12 +118,14 @@ class Curve {
       newWeights.push(this.weights[i]);
       if (k[i] <= t && t < k[i + 1]) {
         const alpha = (t - k[i]) / (k[i + d] - k[i]);
-        newControlPoints.push({
-          x: alpha * this.controlPoints[i + 1].x + (1 - alpha) * this.controlPoints[i].x,
-          y: alpha * this.controlPoints[i + 1].y + (1 - alpha) * this.controlPoints[i].y,
-          z: alpha * this.controlPoints[i + 1].z + (1 - alpha) * this.controlPoints[i].z
-        });
-        newWeights.push(alpha * this.weights[i + 1] + (1 - alpha) * this.weights[i]);
+        if (this.controlPoints[i + 1] !== undefined) {
+          newControlPoints.push({
+            x: alpha * this.controlPoints[i + 1].x + (1 - alpha) * this.controlPoints[i].x,
+            y: alpha * this.controlPoints[i + 1].y + (1 - alpha) * this.controlPoints[i].y,
+            z: alpha * this.controlPoints[i + 1].z + (1 - alpha) * this.controlPoints[i].z
+          });
+          newWeights.push(alpha * this.weights[i + 1] + (1 - alpha) * this.weights[i]);
+        }
       }
     }
 
