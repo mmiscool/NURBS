@@ -340,6 +340,7 @@ describe('BREP', () => {
     fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
+    expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
   });
 
   test('should export BREP Cylinder to STL', () => {
@@ -354,6 +355,7 @@ describe('BREP', () => {
     fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
+    expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
   });
 
   test('should export BREP Cone to STL', () => {
@@ -368,6 +370,7 @@ describe('BREP', () => {
     fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
+    expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
   });
 
   test('should export BREP Cube to STL', () => {
@@ -382,5 +385,6 @@ describe('BREP', () => {
     fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
+    expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
   });
 });

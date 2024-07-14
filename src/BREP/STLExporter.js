@@ -12,8 +12,12 @@ function exportToSTL(brep) {
         const p3 = controlPoints[i][j + 1];
         const p4 = controlPoints[i + 1][j + 1];
 
-        stlContent += generateFacet(p1, p2, p3);
-        stlContent += generateFacet(p3, p2, p4);
+        if (!isDegenerateFacet(p1, p2, p3)) {
+          stlContent += generateFacet(p1, p2, p3);
+        }
+        if (!isDegenerateFacet(p3, p2, p4)) {
+          stlContent += generateFacet(p3, p2, p4);
+        }
       }
     }
   });
@@ -45,11 +49,44 @@ function calculateNormal(p1, p2, p3) {
     z: p3.z - p1.z
   };
 
-  return {
+  const normal = {
     x: u.y * v.z - u.z * v.y,
     y: u.z * v.x - u.x * v.z,
     z: u.x * v.y - u.y * v.x
   };
+
+  const length = Math.sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
+  if (length === 0) {
+    return { x: 0, y: 0, z: 0 };
+  }
+
+  return {
+    x: normal.x / length,
+    y: normal.y / length,
+    z: normal.z / length
+  };
+}
+
+function isDegenerateFacet(p1, p2, p3) {
+  const u = {
+    x: p2.x - p1.x,
+    y: p2.y - p1.y,
+    z: p2.z - p1.z
+  };
+  const v = {
+    x: p3.x - p1.x,
+    y: p3.y - p1.y,
+    z: p3.z - p1.z
+  };
+
+  const crossProduct = {
+    x: u.y * v.z - u.z * v.y,
+    y: u.z * v.x - u.x * v.z,
+    z: u.x * v.y - u.y * v.x
+  };
+
+  const area = Math.sqrt(crossProduct.x * crossProduct.x + crossProduct.y * crossProduct.y + crossProduct.z * crossProduct.z);
+  return area === 0;
 }
 
 export { exportToSTL };
