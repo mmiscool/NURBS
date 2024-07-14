@@ -7,6 +7,7 @@ import { Surface } from '../src/NURBS/Surface';
 import { BREPNode } from '../src/BREP/BREPNode';
 import fs from 'fs';
 import path from 'path';
+import { exportToJson } from '../src/BREP/STLExporter';
 
 describe('BREP', () => {
   test('should create a BREP Taurus', () => {
