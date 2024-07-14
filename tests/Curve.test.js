@@ -1,5 +1,6 @@
 import { Point } from '../src/Point';
 import { Curve } from '../src/Curve';
+import { Surface } from '../src/Surface';
 
 describe('Curve', () => {
   test('should evaluate a point on the curve', () => {
