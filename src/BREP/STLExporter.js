@@ -43,7 +43,12 @@ function exportToJson(brep, filePath) {
         const p3 = controlPoints[i][j + 1];
         const p4 = controlPoints[i + 1][j + 1];
 
-        jsonContent.push({ p1, p2, p3, p4 });
+        jsonContent.push({
+          p1: { x: p1.x, y: p1.y, z: p1.z },
+          p2: { x: p2.x, y: p2.y, z: p2.z },
+          p3: { x: p3.x, y: p3.y, z: p3.z },
+          p4: { x: p4.x, y: p4.y, z: p4.z }
+        });
       }
     }
   });
