@@ -197,10 +197,10 @@ class Curve {
     const intersections = [];
     const tolerance = 1e-6;
 
-    for (let t = 0; t <= 1; t += 0.01) {
+    for (let t = 0; t <= 1; t += 0.1) {
       const pointOnCurve = this.evaluate(t);
-      for (let u = 0; u <= 1; u += 0.01) {
-        for (let v = 0; v <= 1; v += 0.01) {
+      for (let u = 0; u <= 1; u += 0.1) {
+        for (let v = 0; v <= 1; v += 0.1) {
           const pointOnSurface = surface.evaluate(u, v);
           if (Math.abs(pointOnCurve.x - pointOnSurface.x) < tolerance &&
               Math.abs(pointOnCurve.y - pointOnSurface.y) < tolerance &&
