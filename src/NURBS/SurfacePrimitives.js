@@ -125,4 +125,68 @@ function createNURBSFace(controlPoints, degrees, knotVectors, weights = null) {
   };
 }
 
-export { createPlane, createCylinder, createCone, createSphere, createRationalNURBSSurface, trimSurface, createNURBSFace };
+function createTorus(radius, tubeRadius) {
+  const controlPoints = [];
+  const degrees = [2, 2];
+  const knotVectors = [
+    [0, 0, 0, 1, 1, 1],
+    [0, 0, 0, 1, 1, 1]
+  ];
+  const weights = [];
+
+  for (let i = 0; i < 4; i++) {
+    const row = [];
+    for (let j = 0; j < 4; j++) {
+      const u = (i * Math.PI) / 2;
+      const v = (j * Math.PI) / 2;
+      const x = (radius + tubeRadius * Math.cos(v)) * Math.cos(u);
+      const y = (radius + tubeRadius * Math.cos(v)) * Math.sin(u);
+      const z = tubeRadius * Math.sin(v);
+      row.push(new Point(x, y, z));
+    }
+    controlPoints.push(row);
+    weights.push([1, 1, 1, 1]);
+  }
+
+  return {
+    controlPoints,
+    degrees,
+    knotVectors,
+    weights
+  };
+}
+
+function createCube(x, y, z) {
+  const controlPoints = [
+    [
+      new Point(0, 0, 0),
+      new Point(x, 0, 0),
+      new Point(x, y, 0),
+      new Point(0, y, 0)
+    ],
+    [
+      new Point(0, 0, z),
+      new Point(x, 0, z),
+      new Point(x, y, z),
+      new Point(0, y, z)
+    ]
+  ];
+  const degrees = [1, 1];
+  const knotVectors = [
+    [0, 0, 1, 1],
+    [0, 0, 1, 1]
+  ];
+  const weights = [
+    [1, 1, 1, 1],
+    [1, 1, 1, 1]
+  ];
+
+  return {
+    controlPoints,
+    degrees,
+    knotVectors,
+    weights
+  };
+}
+
+export { createPlane, createCylinder, createCone, createSphere, createRationalNURBSSurface, trimSurface, createNURBSFace, createTorus, createCube };
