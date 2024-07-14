@@ -91,8 +91,11 @@ class Curve {
       return this.basisFunction(i, d, t, k);
     }
 
-    const a = d / (k[i + d] - k[i]);
-    const b = d / (k[i + d + 1] - k[i + 1]);
+    const denominatorA = k[i + d] - k[i];
+    const denominatorB = k[i + d + 1] - k[i + 1];
+
+    const a = denominatorA === 0 ? 0 : d / denominatorA;
+    const b = denominatorB === 0 ? 0 : d / denominatorB;
 
     return a * (this.basisFunctionDerivative(i, d - 1, t, k, order - 1) - this.basisFunctionDerivative(i + 1, d - 1, t, k, order - 1)) +
            b * (this.basisFunctionDerivative(i + 1, d - 1, t, k, order - 1) - this.basisFunctionDerivative(i, d - 1, t, k, order - 1));
