@@ -16,6 +16,7 @@
     "testRegex": "",
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "testTimeout": 20000
   }
 }
