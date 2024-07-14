@@ -1,5 +1,5 @@
-import { Point } from '../src/Point';
-import { Surface } from '../src/Surface';
+import { Point } from '../src/NURBS/Point';
+import { Surface } from '../src/NURBS/Surface';
 
 describe('Surface', () => {
   test('should evaluate a point on the surface', () => {

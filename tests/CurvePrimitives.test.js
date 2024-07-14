@@ -1,4 +1,4 @@
-import { Point } from '../src/Point';
+import { Point } from '../src/NURBS/Point';
 import {
   createLine,
   createCircle,
@@ -11,7 +11,7 @@ import {
   createRationalNURBSCurve,
   trimCurve,
   createNURBSEdge
-} from '../src/CurvePrimitives';
+} from '../src/NURBS/CurvePrimitives';
 
 describe('CurvePrimitives', () => {
   test('should create a line', () => {

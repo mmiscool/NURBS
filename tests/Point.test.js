@@ -1,4 +1,4 @@
-import { Point } from '../src/Point';
+import { Point } from '../src/NURBS/Point';
 
 describe('Point', () => {
   test('should create a point with given coordinates', () => {

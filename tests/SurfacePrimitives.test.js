@@ -1,4 +1,4 @@
-import { Point } from '../src/Point';
+import { Point } from '../src/NURBS/Point';
 import {
   createPlane,
   createCylinder,
@@ -7,7 +7,7 @@ import {
   createRationalNURBSSurface,
   trimSurface,
   createNURBSFace
-} from '../src/SurfacePrimitives';
+} from '../src/NURBS/SurfacePrimitives';
 
 describe('SurfacePrimitives', () => {
   test('should create a plane', () => {

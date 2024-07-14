@@ -1,4 +1,4 @@
-import { Vector } from '../src/Vector';
+import { Vector } from '../src/NURBS/Vector';
 
 describe('Vector', () => {
   test('should add two vectors', () => {

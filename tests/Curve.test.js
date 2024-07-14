@@ -1,6 +1,6 @@
-import { Point } from '../src/Point';
-import { Curve } from '../src/Curve';
-import { Surface } from '../src/Surface';
+import { Point } from '../src/NURBS/Point';
+import { Curve } from '../src/NURBS/Curve';
+import { Surface } from '../src/NURBS/Surface';
 
 describe('Curve', () => {
   test('should evaluate a point on the curve', () => {

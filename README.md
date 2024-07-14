@@ -61,7 +61,7 @@ console.log(pointOnSurface); // { x: 1, y: 1, z: 0 }
 
 ### Creating a Line
 ```javascript
-import { createLine } from './src/CurvePrimitives';
+import { createLine } from './src/NURBS/CurvePrimitives';
 
 const startPoint = new Point(0, 0, 0);
 const endPoint = new Point(1, 1, 1);
@@ -71,7 +71,7 @@ console.log(line);
 
 ### Creating a Circle
 ```javascript
-import { createCircle } from './src/CurvePrimitives';
+import { createCircle } from './src/NURBS/CurvePrimitives';
 
 const center = new Point(0, 0, 0);
 const radius = 1;
@@ -81,7 +81,7 @@ console.log(circle);
 
 ### Creating an Ellipse
 ```javascript
-import { createEllipse } from './src/CurvePrimitives';
+import { createEllipse } from './src/NURBS/CurvePrimitives';
 
 const center = new Point(0, 0, 0);
 const radiusX = 2;
@@ -92,7 +92,7 @@ console.log(ellipse);
 
 ### Creating an Arc
 ```javascript
-import { createArc } from './src/CurvePrimitives';
+import { createArc } from './src/NURBS/CurvePrimitives';
 
 const center = new Point(0, 0, 0);
 const radius = 1;
@@ -104,7 +104,7 @@ console.log(arc);
 
 ### Creating a Bezier Curve
 ```javascript
-import { createBezierCurve } from './src/CurvePrimitives';
+import { createBezierCurve } from './src/NURBS/CurvePrimitives';
 
 const controlPoints = [new Point(0, 0, 0), new Point(1, 2, 0), new Point(2, 0, 0)];
 const bezierCurve = createBezierCurve(controlPoints);
@@ -113,7 +113,7 @@ console.log(bezierCurve);
 
 ### Creating a Parabola
 ```javascript
-import { createParabola } from './src/CurvePrimitives';
+import { createParabola } from './src/NURBS/CurvePrimitives';
 
 const vertex = new Point(0, 0, 0);
 const focus = new Point(0, 1, 0);
@@ -123,7 +123,7 @@ console.log(parabola);
 
 ### Creating a Hyperbola
 ```javascript
-import { createHyperbola } from './src/CurvePrimitives';
+import { createHyperbola } from './src/NURBS/CurvePrimitives';
 
 const center = new Point(0, 0, 0);
 const a = 1;
@@ -134,7 +134,7 @@ console.log(hyperbola);
 
 ### Creating a Spline
 ```javascript
-import { createSpline } from './src/CurvePrimitives';
+import { createSpline } from './src/NURBS/CurvePrimitives';
 
 const controlPoints = [new Point(0, 0, 0), new Point(1, 2, 0), new Point(2, 0, 0)];
 const degree = 2;
@@ -144,7 +144,7 @@ console.log(spline);
 
 ### Creating a Rational NURBS Curve
 ```javascript
-import { createRationalNURBSCurve } from './src/CurvePrimitives';
+import { createRationalNURBSCurve } from './src/NURBS/CurvePrimitives';
 
 const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
 const weights = [1, 0.5, 1];
@@ -155,7 +155,7 @@ console.log(rationalCurve);
 
 ### Trimming a NURBS Curve
 ```javascript
-import { trimCurve } from './src/CurvePrimitives';
+import { trimCurve } from './src/NURBS/CurvePrimitives';
 
 const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
 const weights = [1, 0.5, 1];
@@ -167,7 +167,7 @@ console.log(trimmedCurve);
 
 ### Creating a Plane
 ```javascript
-import { createPlane } from './src/SurfacePrimitives';
+import { createPlane } from './src/NURBS/SurfacePrimitives';
 
 const width = 2;
 const height = 2;
@@ -177,7 +177,7 @@ console.log(plane);
 
 ### Creating a Cylinder
 ```javascript
-import { createCylinder } from './src/SurfacePrimitives';
+import { createCylinder } from './src/NURBS/SurfacePrimitives';
 
 const radius = 1;
 const height = 2;
@@ -187,7 +187,7 @@ console.log(cylinder);
 
 ### Creating a Cone
 ```javascript
-import { createCone } from './src/SurfacePrimitives';
+import { createCone } from './src/NURBS/SurfacePrimitives';
 
 const radius = 1;
 const height = 2;
@@ -197,7 +197,7 @@ console.log(cone);
 
 ### Creating a Sphere
 ```javascript
-import { createSphere } from './src/SurfacePrimitives';
+import { createSphere } from './src/NURBS/SurfacePrimitives';
 
 const radius = 1;
 const sphere = createSphere(radius);
@@ -206,7 +206,7 @@ console.log(sphere);
 
 ### Creating a Rational NURBS Surface
 ```javascript
-import { createRationalNURBSSurface } from './src/SurfacePrimitives';
+import { createRationalNURBSSurface } from './src/NURBS/SurfacePrimitives';
 
 const controlPoints = [
   [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
@@ -225,7 +225,7 @@ console.log(rationalSurface);
 
 ### Trimming a NURBS Surface
 ```javascript
-import { trimSurface } from './src/SurfacePrimitives';
+import { trimSurface } from './src/NURBS/SurfacePrimitives';
 
 const controlPoints = [
   [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
@@ -469,7 +469,7 @@ console.log(surface);
 
 ### Creating a NURBS Face
 ```javascript
-import { createNURBSFace } from './src/SurfacePrimitives';
+import { createNURBSFace } from './src/NURBS/SurfacePrimitives';
 
 const controlPoints = [
   [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
@@ -487,7 +487,7 @@ console.log(face);
 
 ### Creating a NURBS Edge
 ```javascript
-import { createNURBSEdge } from './src/CurvePrimitives';
+import { createNURBSEdge } from './src/NURBS/CurvePrimitives';
 
 const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
 const degree = 2;
