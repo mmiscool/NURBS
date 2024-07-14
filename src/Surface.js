@@ -233,11 +233,13 @@ class Surface {
 
   intersect(surface) {
     const intersections = [];
-    const tolerance = 1e-6;
+    const tolerance = 1e-5;
 
     const queue = [{ u1Range: [0, 1], v1Range: [0, 1], u2Range: [0, 1], v2Range: [0, 1] }];
+    const maxIterations = 1000; // Termination condition
+    let iterations = 0;
 
-    while (queue.length > 0) {
+    while (queue.length > 0 && iterations < maxIterations) {
       const { u1Range, v1Range, u2Range, v2Range } = queue.shift();
 
       const u1Mid = (u1Range[0] + u1Range[1]) / 2;
@@ -275,6 +277,7 @@ class Surface {
           );
         }
       }
+      iterations++;
     }
 
     return intersections;

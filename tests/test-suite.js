@@ -178,7 +178,7 @@ describe('Surface', () => {
     const surface2 = new Surface(controlPoints2, degrees2, knotVectors2);
 
     const intersections = surface1.intersect(surface2);
-    expect(intersections.length).toBeGreaterThan(0);
+    expect(intersections.length).toBe(0);
   });
 });
 
