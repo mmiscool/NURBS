@@ -38,6 +38,11 @@ describe('BREP', () => {
     expect(unionResult).toBeDefined();
     expect(intersectionResult).toBeDefined();
     expect(differenceResult).toBeDefined();
+
+    // Add assertions to verify the properties of the boolean operations
+    expect(unionResult.faces.length).toBe(brep1.faces.length + brep2.faces.length);
+    expect(intersectionResult.vertices.length).toBeGreaterThan(0);
+    expect(differenceResult.faces.length).toBe(brep1.faces.length);
   });
 
   test('should perform intersection', () => {
@@ -45,6 +50,9 @@ describe('BREP', () => {
     const brep2 = new BREP();
     const result = brep1.intersection(brep2);
     expect(result).toBeDefined();
+
+    // Add assertions to verify the properties of the intersection
+    expect(result.vertices.length).toBeGreaterThan(0);
   });
 
   test('should perform union', () => {
@@ -52,6 +60,9 @@ describe('BREP', () => {
     const brep2 = new BREP();
     const result = brep1.union(brep2);
     expect(result).toBeDefined();
+
+    // Add assertions to verify the properties of the union
+    expect(result.faces.length).toBe(brep1.faces.length + brep2.faces.length);
   });
 
   test('should perform difference', () => {
@@ -59,23 +70,35 @@ describe('BREP', () => {
     const brep2 = new BREP();
     const result = brep1.difference(brep2);
     expect(result).toBeDefined();
+
+    // Add assertions to verify the properties of the difference
+    expect(result.faces.length).toBe(brep1.faces.length);
   });
 
   test('should perform offset', () => {
     const brep = new BREP();
     const result = brep.offset(5);
     expect(result).toBeDefined();
+
+    // Add assertions to verify the properties of the offset
+    expect(result.faces.length).toBe(brep.faces.length);
   });
 
   test('should perform fillet', () => {
     const brep = new BREP();
     const result = brep.fillet(2);
     expect(result).toBeDefined();
+
+    // Add assertions to verify the properties of the fillet
+    expect(result.edges.length).toBe(brep.edges.length);
   });
 
   test('should perform chamfer', () => {
     const brep = new BREP();
     const result = brep.chamfer(3);
     expect(result).toBeDefined();
+
+    // Add assertions to verify the properties of the chamfer
+    expect(result.edges.length).toBe(brep.edges.length);
   });
 });
