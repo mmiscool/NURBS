@@ -101,4 +101,60 @@ describe('BREP', () => {
     // Add assertions to verify the properties of the chamfer
     expect(result.edges.length).toBe(brep.edges.length);
   });
+
+  test('should manipulate edges', () => {
+    const brep = new BREP();
+    const edge = brep.edges[0];
+    const filletEdge = edge.fillet(2);
+    const chamferEdge = edge.chamfer(3);
+    expect(filletEdge).toBeDefined();
+    expect(chamferEdge).toBeDefined();
+  });
+
+  test('should manipulate faces', () => {
+    const brep = new BREP();
+    const face = brep.faces[0];
+    const offsetFace = face.offset(5);
+    const trimmedFace = face.trim(0, 1, 0, 1);
+    const refinedFace = face.refine([[0.5], [0.5]]);
+    const insertedKnotFace = face.insertKnot(0.5, 0.5);
+    const removedKnotFace = face.removeKnot(0.5, 0.5);
+    const elevatedDegreeFace = face.elevateDegree();
+    const intersectedFaces = face.intersect(brep.faces[1]);
+    expect(offsetFace).toBeDefined();
+    expect(trimmedFace).toBeDefined();
+    expect(refinedFace).toBeDefined();
+    expect(insertedKnotFace).toBeDefined();
+    expect(removedKnotFace).toBeDefined();
+    expect(elevatedDegreeFace).toBeDefined();
+    expect(intersectedFaces.length).toBeGreaterThan(0);
+  });
+
+  test('should manipulate nodes', () => {
+    const brep = new BREP();
+    const node = brep.nodes[0];
+    const edge = node.edges[0];
+    const face = node.faces[0];
+    const vertex = node.vertices[0];
+    node.removeEdge(edge);
+    node.removeFace(face);
+    node.removeVertex(vertex);
+    const foundEdge = node.findEdgeById(edge.id);
+    const foundFace = node.findFaceById(face.id);
+    const foundVertex = node.findVertexById(vertex.id);
+    expect(foundEdge).toBeUndefined();
+    expect(foundFace).toBeUndefined();
+    expect(foundVertex).toBeUndefined();
+  });
+
+  test('should manipulate vertices', () => {
+    const brep = new BREP();
+    const vertex = brep.vertices[0];
+    vertex.move({ x: 1, y: 1, z: 1 });
+    vertex.scale(2);
+    vertex.rotate('x', Math.PI / 2);
+    expect(vertex.point.x).toBeCloseTo(2);
+    expect(vertex.point.y).toBeCloseTo(-2);
+    expect(vertex.point.z).toBeCloseTo(2);
+  });
 });
