@@ -105,8 +105,8 @@ function trimSurface(surface, uStart, uEnd, vStart, vEnd) {
   const trimmedControlPoints = surface.controlPoints.slice(uStart, uEnd + 1).map(row => row.slice(vStart, vEnd + 1));
   const trimmedWeights = surface.weights.slice(uStart, uEnd + 1).map(row => row.slice(vStart, vEnd + 1));
   const trimmedKnotVectors = [
-    surface.knotVectors[0].slice(uStart, uEnd + surface.degrees[0] + 2),
-    surface.knotVectors[1].slice(vStart, vEnd + surface.degrees[1] + 2)
+    surface.knotVectors[0].slice(uStart, uEnd + surface.degrees[0] + 1),
+    surface.knotVectors[1].slice(vStart, vEnd + surface.degrees[1] + 1)
   ];
   return {
     controlPoints: trimmedControlPoints,
