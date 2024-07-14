@@ -1,3 +1,6 @@
+import fs from 'fs';
+import path from 'path';
+
 function exportToSTL(brep) {
   let stlContent = 'solid BREP\n';
 
@@ -24,6 +27,33 @@ function exportToSTL(brep) {
 
   stlContent += 'endsolid BREP\n';
   return stlContent;
+}
+
+function exportToJson(brep, filePath) {
+  const jsonContent = [];
+
+  brep.faces.forEach(face => {
+    const surface = face.surface;
+    const controlPoints = surface.controlPoints;
+
+    for (let i = 0; i < controlPoints.length - 1; i++) {
+      for (let j = 0; j < controlPoints[i].length - 1; j++) {
+        const p1 = controlPoints[i][j];
+        const p2 = controlPoints[i + 1][j];
+        const p3 = controlPoints[i][j + 1];
+        const p4 = controlPoints[i + 1][j + 1];
+
+        if (!isDegenerateFacet(p1, p2, p3)) {
+          jsonContent.push({ p1, p2, p3 });
+        }
+        if (!isDegenerateFacet(p3, p2, p4)) {
+          jsonContent.push({ p3, p2, p4 });
+        }
+      }
+    }
+  });
+
+  fs.writeFileSync(filePath, JSON.stringify(jsonContent, null, 2));
 }
 
 function generateFacet(p1, p2, p3) {
@@ -89,4 +119,4 @@ function isDegenerateFacet(p1, p2, p3) {
   return area === 0;
 }
 
-export { exportToSTL };
+export { exportToSTL, exportToJson };

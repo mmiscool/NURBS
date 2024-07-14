@@ -387,4 +387,76 @@ describe('BREP', () => {
     expect(stlContent).toContain('endsolid BREP');
     expect(stlContent).toMatch(/facet normal [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+outer loop\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+vertex [\d\.\-e]+ [\d\.\-e]+ [\d\.\-e]+\n\s+endloop\n\s+endfacet\n/);
   });
+
+  test('should export BREP Taurus to JSON', () => {
+    const brep = new BREP();
+    const taurus = brep.createBREPTaurus(5, 2);
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'taurus.json');
+    exportToJson(brep, filePath);
+    const jsonContent = fs.readFileSync(filePath, 'utf8');
+    const jsonData = JSON.parse(jsonContent);
+    expect(jsonData).toBeInstanceOf(Array);
+    expect(jsonData.length).toBeGreaterThan(0);
+    expect(jsonData[0]).toHaveProperty('p1');
+    expect(jsonData[0]).toHaveProperty('p2');
+    expect(jsonData[0]).toHaveProperty('p3');
+  });
+
+  test('should export BREP Cylinder to JSON', () => {
+    const brep = new BREP();
+    const cylinder = brep.createBREPCylinder(3, 7);
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'cylinder.json');
+    exportToJson(brep, filePath);
+    const jsonContent = fs.readFileSync(filePath, 'utf8');
+    const jsonData = JSON.parse(jsonContent);
+    expect(jsonData).toBeInstanceOf(Array);
+    expect(jsonData.length).toBeGreaterThan(0);
+    expect(jsonData[0]).toHaveProperty('p1');
+    expect(jsonData[0]).toHaveProperty('p2');
+    expect(jsonData[0]).toHaveProperty('p3');
+  });
+
+  test('should export BREP Cone to JSON', () => {
+    const brep = new BREP();
+    const cone = brep.createBREPCone(3, 7);
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'cone.json');
+    exportToJson(brep, filePath);
+    const jsonContent = fs.readFileSync(filePath, 'utf8');
+    const jsonData = JSON.parse(jsonContent);
+    expect(jsonData).toBeInstanceOf(Array);
+    expect(jsonData.length).toBeGreaterThan(0);
+    expect(jsonData[0]).toHaveProperty('p1');
+    expect(jsonData[0]).toHaveProperty('p2');
+    expect(jsonData[0]).toHaveProperty('p3');
+  });
+
+  test('should export BREP Cube to JSON', () => {
+    const brep = new BREP();
+    const cube = brep.createBREPCube(3, 3, 3);
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'cube.json');
+    exportToJson(brep, filePath);
+    const jsonContent = fs.readFileSync(filePath, 'utf8');
+    const jsonData = JSON.parse(jsonContent);
+    expect(jsonData).toBeInstanceOf(Array);
+    expect(jsonData.length).toBeGreaterThan(0);
+    expect(jsonData[0]).toHaveProperty('p1');
+    expect(jsonData[0]).toHaveProperty('p2');
+    expect(jsonData[0]).toHaveProperty('p3');
+  });
 });
