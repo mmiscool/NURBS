@@ -281,13 +281,13 @@ class Surface {
           );
         }
       }
-      iterations++;
+    iterations++;
     }
 
     return intersections;
   }
 
-  approximate(points, degrees) {
+  static approximate(points, degrees) {
     const n = points.length - 1;
     const m = points[0].length - 1;
     const ku = new Array(n + degrees[0] + 2).fill(0).map((_, i) => i / (n + degrees[0] + 1));
