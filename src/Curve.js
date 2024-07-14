@@ -150,6 +150,14 @@ class Curve {
 
     const newKnotVector = [...U.slice(0, k + 1), t, ...U.slice(k + 1)];
 
+    // Ensure the new control points and weights are correctly inserted into the curve
+    newControlPoints.splice(k + 1, 0, {
+      x: (P[k].x + P[k + 1].x) / 2,
+      y: (P[k].y + P[k + 1].y) / 2,
+      z: (P[k].z + P[k + 1].z) / 2
+    });
+    newWeights.splice(k + 1, 0, (W[k] + W[k + 1]) / 2);
+
     return new Curve(newControlPoints, p, newKnotVector, newWeights);
   }
 
