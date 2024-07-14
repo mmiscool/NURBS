@@ -5,6 +5,8 @@ import { BREPVertex } from '../src/BREP/BREPVertex';
 import { Point } from '../src/NURBS/Point';
 import { Surface } from '../src/NURBS/Surface';
 import { BREPNode } from '../src/BREP/BREPNode';
+import fs from 'fs';
+import path from 'path';
 
 describe('BREP', () => {
   test('should create a BREP Taurus', () => {
@@ -330,6 +332,12 @@ describe('BREP', () => {
     const brep = new BREP();
     const taurus = brep.createBREPTaurus(5, 2);
     const stlContent = brep.exportToSTL();
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'taurus.stl');
+    fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
   });
@@ -338,6 +346,12 @@ describe('BREP', () => {
     const brep = new BREP();
     const cylinder = brep.createBREPCylinder(3, 7);
     const stlContent = brep.exportToSTL();
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'cylinder.stl');
+    fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
   });
@@ -346,6 +360,12 @@ describe('BREP', () => {
     const brep = new BREP();
     const cone = brep.createBREPCone(3, 7);
     const stlContent = brep.exportToSTL();
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'cone.stl');
+    fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
   });
@@ -354,6 +374,12 @@ describe('BREP', () => {
     const brep = new BREP();
     const cube = brep.createBREPCube(3, 3, 3);
     const stlContent = brep.exportToSTL();
+    const artifactsDir = path.join(__dirname, '../artifacts');
+    if (!fs.existsSync(artifactsDir)) {
+      fs.mkdirSync(artifactsDir);
+    }
+    const filePath = path.join(artifactsDir, 'cube.stl');
+    fs.writeFileSync(filePath, stlContent);
     expect(stlContent).toContain('solid BREP');
     expect(stlContent).toContain('endsolid BREP');
   });
