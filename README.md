@@ -458,4 +458,4 @@ To run the test suite using Jest, follow these steps:
    npm test
    ```
 
-The test files are located in the `tests` directory.
+The test files are located in the `tests/test-suite.js` file.
