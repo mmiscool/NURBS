@@ -99,6 +99,8 @@ describe('Curve', () => {
     const curve = new Curve(controlPoints, degree, knotVector);
     const newCurve = curve.insertKnot(0.5);
     expect(newCurve.knotVector).toEqual([0, 0, 0, 0.5, 1, 1, 1]);
+    expect(newCurve.controlPoints.length).toBe(4);
+    expect(newCurve.weights.length).toBe(4);
   });
 
   test('should remove a knot from the curve', () => {
