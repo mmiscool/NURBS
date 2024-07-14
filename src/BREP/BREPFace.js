@@ -42,6 +42,9 @@ class BREPFace {
 
   // Method to intersect the face with another face
   intersect(face) {
+    if (!face.surface) {
+      throw new Error('The provided face does not have a surface.');
+    }
     const intersections = this.surface.intersect(face.surface);
     return intersections.map(intersection => new BREPFace(intersection, this.id));
   }

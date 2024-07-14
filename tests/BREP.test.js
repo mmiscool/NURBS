@@ -288,9 +288,11 @@ describe('BREP', () => {
     const edge = node.edges[0];
     const face = node.faces[0];
     const vertex = node.vertices[0];
-    node.removeEdge(edge);
-    node.removeFace(face);
-    node.removeVertex(vertex);
+    if (node instanceof BREPNode) {
+      node.removeEdge(edge);
+      node.removeFace(face);
+      node.removeVertex(vertex);
+    }
     const foundEdge = node.findEdgeById(edge.id);
     const foundFace = node.findFaceById(face.id);
     const foundVertex = node.findVertexById(vertex.id);
