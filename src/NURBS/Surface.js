@@ -268,8 +268,8 @@ class Surface {
             { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
             { u1Range: [u1Range[0], u1Mid], v1Range: [v1Range[0], v1Mid], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
             { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Range[0], v1Mid], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
-            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
-            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Mid, u2Range[1]], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
+            { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Range[0], v2Mid] },
             { u1Range: [u1Range[0], u1Mid], v1Range: [v1Range[0], v1Mid], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
             { u1Range: [u1Mid, u1Range[1]], v1Range: [v1Range[0], v1Mid], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
             { u1Range: [u1Range[0], u1Mid], v1Range: [v1Mid, v1Range[1]], u2Range: [u2Range[0], u2Mid], v2Range: [v2Mid, v2Range[1]] },
@@ -285,6 +285,15 @@ class Surface {
     }
 
     return intersections;
+  }
+
+  offset(distance) {
+    const newControlPoints = this.controlPoints.map(row => row.map(point => ({
+      x: point.x + distance,
+      y: point.y + distance,
+      z: point.z + distance
+    })));
+    return new Surface(newControlPoints, this.degrees, this.knotVectors, this.weights);
   }
 
   static approximate(points, degrees) {

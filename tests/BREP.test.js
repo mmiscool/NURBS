@@ -67,7 +67,7 @@ describe('BREP', () => {
     // Add assertions to verify the properties of the boolean operations
     expect(unionResult.faces.length).toBe(brep1.faces.length + brep2.faces.length);
     expect(intersectionResult.vertices.length).toBeGreaterThan(0);
-    expect(differenceResult.faces.length).toBe(brep1.faces.length);
+    expect(differenceResult.faces.length).toBe(brep1.faces.length - brep2.faces.length);
   });
 
   test('should perform intersection', () => {
@@ -157,7 +157,8 @@ describe('BREP', () => {
     expect(result).toBeDefined();
 
     // Add assertions to verify the properties of the difference
-    expect(result.faces.length).toBe(brep1.faces.length);
+    expect(result.faces.length).toBe(brep1.faces.length - brep2.faces.length);
+    expect(result.faces).toEqual(expect.arrayContaining(brep1.faces.filter(face1 => !brep2.faces.some(face2 => face1.surface.intersect(face2.surface).length > 0))));
   });
 
   test('should perform offset', () => {
