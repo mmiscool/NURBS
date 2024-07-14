@@ -405,6 +405,7 @@ describe('BREP', () => {
     expect(jsonData[0]).toHaveProperty('p1');
     expect(jsonData[0]).toHaveProperty('p2');
     expect(jsonData[0]).toHaveProperty('p3');
+    expect(jsonData[0]).toHaveProperty('p4');
   });
 
   test('should export BREP Cylinder to JSON', () => {
@@ -423,6 +424,7 @@ describe('BREP', () => {
     expect(jsonData[0]).toHaveProperty('p1');
     expect(jsonData[0]).toHaveProperty('p2');
     expect(jsonData[0]).toHaveProperty('p3');
+    expect(jsonData[0]).toHaveProperty('p4');
   });
 
   test('should export BREP Cone to JSON', () => {
@@ -441,6 +443,7 @@ describe('BREP', () => {
     expect(jsonData[0]).toHaveProperty('p1');
     expect(jsonData[0]).toHaveProperty('p2');
     expect(jsonData[0]).toHaveProperty('p3');
+    expect(jsonData[0]).toHaveProperty('p4');
   });
 
   test('should export BREP Cube to JSON', () => {
@@ -459,7 +462,7 @@ describe('BREP', () => {
     expect(jsonData[0]).toHaveProperty('p1');
     expect(jsonData[0]).toHaveProperty('p2');
     expect(jsonData[0]).toHaveProperty('p3');
-
+    expect(jsonData[0]).toHaveProperty('p4');
     // Add assertions to verify the correct mesh triangulation data in the cube.json file
     jsonData.forEach(triangle => {
       expect(triangle).toHaveProperty('p1');

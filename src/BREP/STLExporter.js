@@ -43,12 +43,7 @@ function exportToJson(brep, filePath) {
         const p3 = controlPoints[i][j + 1];
         const p4 = controlPoints[i + 1][j + 1];
 
-        if (!isDegenerateFacet(p1, p2, p3)) {
-          jsonContent.push({ p1, p2, p3 });
-        }
-        if (!isDegenerateFacet(p3, p2, p4)) {
-          jsonContent.push({ p3, p2, p4 });
-        }
+        jsonContent.push({ p1, p2, p3, p4 });
       }
     }
   });
