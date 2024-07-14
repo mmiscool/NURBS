@@ -10,10 +10,15 @@ function createPlane(width, height) {
     [0, 0, 1, 1],
     [0, 0, 1, 1]
   ];
+  const weights = [
+    [1, 1],
+    [1, 1]
+  ];
   return {
     controlPoints,
     degrees,
-    knotVectors
+    knotVectors,
+    weights
   };
 }
 
@@ -27,10 +32,15 @@ function createCylinder(radius, height) {
     [0, 0, 1, 1],
     [0, 0, 1, 1]
   ];
+  const weights = [
+    [1, 1],
+    [1, 1]
+  ];
   return {
     controlPoints,
     degrees,
-    knotVectors
+    knotVectors,
+    weights
   };
 }
 
@@ -44,10 +54,15 @@ function createCone(radius, height) {
     [0, 0, 1, 1],
     [0, 0, 1, 1]
   ];
+  const weights = [
+    [1, 1],
+    [1, 1]
+  ];
   return {
     controlPoints,
     degrees,
-    knotVectors
+    knotVectors,
+    weights
   };
 }
 
@@ -61,11 +76,44 @@ function createSphere(radius) {
     [0, 0, 1, 1],
     [0, 0, 1, 1]
   ];
+  const weights = [
+    [1, 1],
+    [1, 1]
+  ];
   return {
     controlPoints,
+    degrees,
+    knotVectors,
+    weights
+  };
+}
+
+function createRationalNURBSSurface(controlPoints, weights, degrees) {
+  const knotVectors = [
+    Array(controlPoints.length + degrees[0] + 1).fill(0).map((_, i) => i / (controlPoints.length + degrees[0])),
+    Array(controlPoints[0].length + degrees[1] + 1).fill(0).map((_, i) => i / (controlPoints[0].length + degrees[1]))
+  ];
+  return {
+    controlPoints,
+    weights,
     degrees,
     knotVectors
   };
 }
 
-export { createPlane, createCylinder, createCone, createSphere };
+function trimSurface(surface, uStart, uEnd, vStart, vEnd) {
+  const trimmedControlPoints = surface.controlPoints.slice(uStart, uEnd + 1).map(row => row.slice(vStart, vEnd + 1));
+  const trimmedWeights = surface.weights.slice(uStart, uEnd + 1).map(row => row.slice(vStart, vEnd + 1));
+  const trimmedKnotVectors = [
+    surface.knotVectors[0].slice(uStart, uEnd + surface.degrees[0] + 2),
+    surface.knotVectors[1].slice(vStart, vEnd + surface.degrees[1] + 2)
+  ];
+  return {
+    controlPoints: trimmedControlPoints,
+    weights: trimmedWeights,
+    degrees: surface.degrees,
+    knotVectors: trimmedKnotVectors
+  };
+}
+
+export { createPlane, createCylinder, createCone, createSphere, createRationalNURBSSurface, trimSurface };

@@ -127,4 +127,29 @@ function createSpline(controlPoints, degree) {
   };
 }
 
-export { createLine, createCircle, createEllipse, createArc, createBezierCurve, createParabola, createHyperbola, createSpline };
+function createRationalNURBSCurve(controlPoints, weights, degree) {
+  const knotVector = [];
+  for (let i = 0; i < controlPoints.length + degree + 1; i++) {
+    knotVector.push(i);
+  }
+  return {
+    controlPoints,
+    weights,
+    degree,
+    knotVector
+  };
+}
+
+function trimCurve(curve, start, end) {
+  const trimmedControlPoints = curve.controlPoints.slice(start, end + 1);
+  const trimmedWeights = curve.weights.slice(start, end + 1);
+  const trimmedKnotVector = curve.knotVector.slice(start, end + curve.degree + 2);
+  return {
+    controlPoints: trimmedControlPoints,
+    weights: trimmedWeights,
+    degree: curve.degree,
+    knotVector: trimmedKnotVector
+  };
+}
+
+export { createLine, createCircle, createEllipse, createArc, createBezierCurve, createParabola, createHyperbola, createSpline, createRationalNURBSCurve, trimCurve };

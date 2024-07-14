@@ -5,6 +5,14 @@ Complete Javascript NURBS library
 - Handle NURBS curves and surfaces
 - Basic primitives (points, vectors)
 - Utility functions for creating standard geometry pieces (lines, circles, ellipses, arcs)
+- Trimming NURBS curves and surfaces
+- Rational NURBS (weights for control points)
+- NURBS curve and surface derivatives
+- NURBS curve and surface refinement
+- NURBS curve and surface knot insertion and removal
+- NURBS curve and surface degree elevation
+- NURBS curve and surface intersection
+- NURBS curve and surface approximation
 
 ## Usage
 
@@ -134,6 +142,29 @@ const spline = createSpline(controlPoints, degree);
 console.log(spline);
 ```
 
+### Creating a Rational NURBS Curve
+```javascript
+import { createRationalNURBSCurve } from './src/CurvePrimitives';
+
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const weights = [1, 0.5, 1];
+const degree = 2;
+const rationalCurve = createRationalNURBSCurve(controlPoints, weights, degree);
+console.log(rationalCurve);
+```
+
+### Trimming a NURBS Curve
+```javascript
+import { trimCurve } from './src/CurvePrimitives';
+
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const weights = [1, 0.5, 1];
+const degree = 2;
+const curve = createRationalNURBSCurve(controlPoints, weights, degree);
+const trimmedCurve = trimCurve(curve, 0, 1);
+console.log(trimmedCurve);
+```
+
 ### Creating a Plane
 ```javascript
 import { createPlane } from './src/SurfacePrimitives';
@@ -171,4 +202,244 @@ import { createSphere } from './src/SurfacePrimitives';
 const radius = 1;
 const sphere = createSphere(radius);
 console.log(sphere);
+```
+
+### Creating a Rational NURBS Surface
+```javascript
+import { createRationalNURBSSurface } from './src/SurfacePrimitives';
+
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const weights = [
+  [1, 0.5, 1],
+  [0.5, 0.25, 0.5],
+  [1, 0.5, 1]
+];
+const degrees = [2, 2];
+const rationalSurface = createRationalNURBSSurface(controlPoints, weights, degrees);
+console.log(rationalSurface);
+```
+
+### Trimming a NURBS Surface
+```javascript
+import { trimSurface } from './src/SurfacePrimitives';
+
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const weights = [
+  [1, 0.5, 1],
+  [0.5, 0.25, 0.5],
+  [1, 0.5, 1]
+];
+const degrees = [2, 2];
+const surface = createRationalNURBSSurface(controlPoints, weights, degrees);
+const trimmedSurface = trimSurface(surface, 0, 1, 0, 1);
+console.log(trimmedSurface);
+```
+
+### Evaluating NURBS Curve Derivatives
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const knotVector = [0, 0, 0, 1, 1, 1];
+const curve = new Curve(controlPoints, degree, knotVector);
+const derivative = curve.derivative(0.5, 1);
+console.log(derivative); // { x: 1, y: 0, z: 0 }
+```
+
+### Evaluating NURBS Surface Derivatives
+```javascript
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const knotVectors = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface = new Surface(controlPoints, degrees, knotVectors);
+const derivative = surface.derivative(0.5, 0.5, 1, 1);
+console.log(derivative); // { x: 1, y: 1, z: 0 }
+```
+
+### Refining a NURBS Curve
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const knotVector = [0, 0, 0, 1, 1, 1];
+const curve = new Curve(controlPoints, degree, knotVector);
+const refinedCurve = curve.refine([0.5]);
+console.log(refinedCurve);
+```
+
+### Refining a NURBS Surface
+```javascript
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const knotVectors = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface = new Surface(controlPoints, degrees, knotVectors);
+const refinedSurface = surface.refine([[0.5], [0.5]]);
+console.log(refinedSurface);
+```
+
+### Inserting a Knot into a NURBS Curve
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const knotVector = [0, 0, 0, 1, 1, 1];
+const curve = new Curve(controlPoints, degree, knotVector);
+const newCurve = curve.insertKnot(0.5);
+console.log(newCurve);
+```
+
+### Inserting a Knot into a NURBS Surface
+```javascript
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const knotVectors = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface = new Surface(controlPoints, degrees, knotVectors);
+const newSurface = surface.insertKnot(0.5, 0.5);
+console.log(newSurface);
+```
+
+### Removing a Knot from a NURBS Curve
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const knotVector = [0, 0, 0, 0.5, 1, 1, 1];
+const curve = new Curve(controlPoints, degree, knotVector);
+const newCurve = curve.removeKnot(0.5);
+console.log(newCurve);
+```
+
+### Removing a Knot from a NURBS Surface
+```javascript
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const knotVectors = [
+  [0, 0, 0, 0.5, 1, 1, 1],
+  [0, 0, 0, 0.5, 1, 1, 1]
+];
+const surface = new Surface(controlPoints, degrees, knotVectors);
+const newSurface = surface.removeKnot(0.5, 0.5);
+console.log(newSurface);
+```
+
+### Elevating the Degree of a NURBS Curve
+```javascript
+const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const knotVector = [0, 0, 0, 1, 1, 1];
+const curve = new Curve(controlPoints, degree, knotVector);
+const newCurve = curve.elevateDegree();
+console.log(newCurve);
+```
+
+### Elevating the Degree of a NURBS Surface
+```javascript
+const controlPoints = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const knotVectors = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface = new Surface(controlPoints, degrees, knotVectors);
+const newSurface = surface.elevateDegree();
+console.log(newSurface);
+```
+
+### Intersecting NURBS Curves
+```javascript
+const controlPoints1 = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree1 = 2;
+const knotVector1 = [0, 0, 0, 1, 1, 1];
+const curve1 = new Curve(controlPoints1, degree1, knotVector1);
+
+const controlPoints2 = [new Point(0, 1, 0), new Point(1, 0, 0), new Point(2, 1, 0)];
+const degree2 = 2;
+const knotVector2 = [0, 0, 0, 1, 1, 1];
+const curve2 = new Curve(controlPoints2, degree2, knotVector2);
+
+const intersections = curve1.intersect(curve2);
+console.log(intersections);
+```
+
+### Intersecting NURBS Surfaces
+```javascript
+const controlPoints1 = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees1 = [2, 2];
+const knotVectors1 = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface1 = new Surface(controlPoints1, degrees1, knotVectors1);
+
+const controlPoints2 = [
+  [new Point(0, 0, 1), new Point(1, 0, 1), new Point(2, 0, 1)],
+  [new Point(0, 1, 1), new Point(1, 1, 1), new Point(2, 1, 1)],
+  [new Point(0, 2, 1), new Point(1, 2, 1), new Point(2, 2, 1)]
+];
+const degrees2 = [2, 2];
+const knotVectors2 = [
+  [0, 0, 0, 1, 1, 1],
+  [0, 0, 0, 1, 1, 1]
+];
+const surface2 = new Surface(controlPoints2, degrees2, knotVectors2);
+
+const intersections = surface1.intersect(surface2);
+console.log(intersections);
+```
+
+### Approximating a NURBS Curve
+```javascript
+const points = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+const degree = 2;
+const curve = Curve.approximate(points, degree);
+console.log(curve);
+```
+
+### Approximating a NURBS Surface
+```javascript
+const points = [
+  [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+  [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+  [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+];
+const degrees = [2, 2];
+const surface = Surface.approximate(points, degrees);
+console.log(surface);
 ```
