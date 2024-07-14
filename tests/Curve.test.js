@@ -35,16 +35,23 @@ describe('Curve', () => {
     const degree = 2;
     const knotVector = [0, 0, 0, 1, 1, 1];
     const curve = new Curve(controlPoints, degree, knotVector);
+
+    // Test for out of bounds knot value
+    expect(() => curve.insertKnot(-0.5)).toThrow("Knot value t is out of bounds.");
+    expect(() => curve.insertKnot(1.5)).toThrow("Knot value t is out of bounds.");
+
     const newCurve = curve.insertKnot(0.5);
     expect(newCurve.knotVector).toEqual([0, 0, 0, 0.5, 1, 1, 1]);
     expect(newCurve.controlPoints.length).toBe(4);
+    expect(newCurve.weights.length).toBe(4);
+
+    // Verify the new control points and weights are correctly calculated and inserted
     expect(newCurve.controlPoints).toEqual([
       new Point(0, 0, 0),
       new Point(0.5, 0.5, 0),
       new Point(1.5, 0.5, 0),
       new Point(2, 0, 0)
     ]);
-    expect(newCurve.weights.length).toBe(4);
     expect(newCurve.weights).toEqual([1, 0.75, 0.75, 1]);
   });
 
