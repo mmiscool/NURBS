@@ -1,0 +1,12 @@
+{
+  "name": "nurbs",
+  "version": "1.0.0",
+  "description": "Complete Javascript NURBS library",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  }
+}

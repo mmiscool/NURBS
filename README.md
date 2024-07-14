@@ -443,3 +443,19 @@ const degrees = [2, 2];
 const surface = Surface.approximate(points, degrees);
 console.log(surface);
 ```
+
+## Running Tests
+
+To run the test suite using Jest, follow these steps:
+
+1. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run the tests:
+   ```bash
+   npm test
+   ```
+
+The test files are located in the `tests` directory.
