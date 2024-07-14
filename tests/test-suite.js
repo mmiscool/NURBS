@@ -1,8 +1,8 @@
-const { Point } = require('../src/Point');
-const { Vector } = require('../src/Vector');
-const { Curve } = require('../src/Curve');
-const { Surface } = require('../src/Surface');
-const {
+import { Point } from '../src/Point';
+import { Vector } from '../src/Vector';
+import { Curve } from '../src/Curve';
+import { Surface } from '../src/Surface';
+import {
   createLine,
   createCircle,
   createEllipse,
@@ -13,15 +13,15 @@ const {
   createSpline,
   createRationalNURBSCurve,
   trimCurve
-} = require('../src/CurvePrimitives');
-const {
+} from '../src/CurvePrimitives';
+import {
   createPlane,
   createCylinder,
   createCone,
   createSphere,
   createRationalNURBSSurface,
   trimSurface
-} = require('../src/SurfacePrimitives');
+} from '../src/SurfacePrimitives';
 
 describe('Point', () => {
   test('should create a point with given coordinates', () => {
@@ -305,5 +305,3 @@ describe('SurfacePrimitives', () => {
     expect(trimmedSurface.knotVectors[1].length).toBe(degrees[1] + 2);
   });
 });
-
-module.exports = {};
