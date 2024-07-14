@@ -320,4 +320,36 @@ describe('BREP', () => {
     expect(vertex.point.y).toBeCloseTo(-2);
     expect(vertex.point.z).toBeCloseTo(2);
   });
+
+  test('should export BREP Taurus to STL', () => {
+    const brep = new BREP();
+    const taurus = brep.createBREPTaurus(5, 2);
+    const stlContent = brep.exportToSTL();
+    expect(stlContent).toContain('solid BREP');
+    expect(stlContent).toContain('endsolid BREP');
+  });
+
+  test('should export BREP Cylinder to STL', () => {
+    const brep = new BREP();
+    const cylinder = brep.createBREPCylinder(3, 7);
+    const stlContent = brep.exportToSTL();
+    expect(stlContent).toContain('solid BREP');
+    expect(stlContent).toContain('endsolid BREP');
+  });
+
+  test('should export BREP Cone to STL', () => {
+    const brep = new BREP();
+    const cone = brep.createBREPCone(3, 7);
+    const stlContent = brep.exportToSTL();
+    expect(stlContent).toContain('solid BREP');
+    expect(stlContent).toContain('endsolid BREP');
+  });
+
+  test('should export BREP Cube to STL', () => {
+    const brep = new BREP();
+    const cube = brep.createBREPCube(3, 3, 3);
+    const stlContent = brep.exportToSTL();
+    expect(stlContent).toContain('solid BREP');
+    expect(stlContent).toContain('endsolid BREP');
+  });
 });

@@ -554,6 +554,16 @@ const face = new BREPFace(surface, 1);
 console.log(face.id); // 1
 ```
 
+### Exporting a BREP Solid as an STL File
+```javascript
+import { BREP } from './src/BREP/BREP';
+
+const brep = new BREP();
+const cube = brep.createBREPCube(3, 3, 3);
+const stlContent = brep.exportToSTL();
+console.log(stlContent);
+```
+
 ## Running Tests
 
 To run the test suite using Jest, follow these steps:

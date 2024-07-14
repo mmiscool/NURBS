@@ -3,6 +3,7 @@ import { BREPEdge } from './BREPEdge';
 import { BREPFace } from './BREPFace';
 import { BREPVertex } from './BREPVertex';
 import { createTorus, createCylinder, createCone, createCube } from '../NURBS/SurfacePrimitives';
+import { exportToSTL } from './STLExporter';
 
 class BREP {
   constructor() {
@@ -179,6 +180,10 @@ class BREP {
     });
     this.addNode(brepNode);
     return brepNode;
+  }
+
+  exportToSTL() {
+    return exportToSTL(this);
   }
 }
 
