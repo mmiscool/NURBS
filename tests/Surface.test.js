@@ -147,4 +147,36 @@ describe('Surface', () => {
     const intersections = surface1.intersect(surface2);
     expect(intersections.length).toBe(0);
   });
+
+  test('should calculate basis function', () => {
+    const controlPoints = [
+      [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+      [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+      [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+    ];
+    const degrees = [2, 2];
+    const knotVectors = [
+      [0, 0, 0, 1, 1, 1],
+      [0, 0, 0, 1, 1, 1]
+    ];
+    const surface = new Surface(controlPoints, degrees, knotVectors);
+    const basisFunctionValue = surface.basisFunction(1, degrees[0], 0.5, knotVectors[0]);
+    expect(basisFunctionValue).toBeCloseTo(0.5, 5);
+  });
+
+  test('should calculate basis function derivative', () => {
+    const controlPoints = [
+      [new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)],
+      [new Point(0, 1, 0), new Point(1, 1, 0), new Point(2, 1, 0)],
+      [new Point(0, 2, 0), new Point(1, 2, 0), new Point(2, 2, 0)]
+    ];
+    const degrees = [2, 2];
+    const knotVectors = [
+      [0, 0, 0, 1, 1, 1],
+      [0, 0, 0, 1, 1, 1]
+    ];
+    const surface = new Surface(controlPoints, degrees, knotVectors);
+    const basisFunctionDerivativeValue = surface.basisFunctionDerivative(1, degrees[0], 0.5, knotVectors[0], 1);
+    expect(basisFunctionDerivativeValue).toBeCloseTo(1, 5);
+  });
 });

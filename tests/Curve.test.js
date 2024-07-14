@@ -146,4 +146,22 @@ describe('Curve', () => {
     const intersections = curve.intersectSurface(surface);
     expect(intersections.length).toBeGreaterThan(0);
   });
+
+  test('should calculate basis function', () => {
+    const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+    const degree = 2;
+    const knotVector = [0, 0, 0, 1, 1, 1];
+    const curve = new Curve(controlPoints, degree, knotVector);
+    const basisFunctionValue = curve.basisFunction(1, degree, 0.5, knotVector);
+    expect(basisFunctionValue).toBeCloseTo(0.5, 5);
+  });
+
+  test('should calculate basis function derivative', () => {
+    const controlPoints = [new Point(0, 0, 0), new Point(1, 1, 0), new Point(2, 0, 0)];
+    const degree = 2;
+    const knotVector = [0, 0, 0, 1, 1, 1];
+    const curve = new Curve(controlPoints, degree, knotVector);
+    const basisFunctionDerivativeValue = curve.basisFunctionDerivative(1, degree, 0.5, knotVector, 1);
+    expect(basisFunctionDerivativeValue).toBeCloseTo(1, 5);
+  });
 });
