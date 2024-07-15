@@ -564,10 +564,6 @@ const stlContent = brep.exportToSTL();
 console.log(stlContent);
 ```
 
-## Comparison with verb NURBS Library
-
-We have compared the functionality of our NURBS library with the verb NURBS library to validate the test cases for NURBS functionality. The comparison ensures that our library produces consistent and accurate results for NURBS operations.
-
 ## Running Tests
 
 To run the test suite using Jest, follow these steps:
